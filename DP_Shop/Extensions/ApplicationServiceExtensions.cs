@@ -12,6 +12,8 @@ namespace DP_Shop.Extensions
         {
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAccountRespository, AccountRespository>();
+            services.AddScoped<IUserRespository, UserRespository>();
+            services.AddScoped<IRoleRespository, RoleRespository>();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));

@@ -1,8 +1,10 @@
 ﻿using DP_Shop.Data.Entities;
+using DP_Shop.DTOs.Enum;
 using DP_Shop.Interface;
 using DP_Shop.Models;
 using DP_Shop.Services;
 using Microsoft.AspNetCore.Identity;
+using System.Data;
 
 namespace DP_Shop.Respository
 {
@@ -30,16 +32,17 @@ namespace DP_Shop.Respository
             return false;
         }
 
-        public async Task<bool> AssignRole(ApplicationUser user, UserRole model)
+        public async Task<bool> AssignRole(ApplicationUser user, Role role)
         {
-            
-            var result = await _userManager.AddToRoleAsync(user, model.Role);
+            var result = await _userManager.AddToRoleAsync(user, role.ToString());
+
             if (result.Succeeded)
             {
                 return true;
             }
             return false;
         }
+
 
         public async Task<string> Login(Login model)
         {
@@ -58,11 +61,38 @@ namespace DP_Shop.Respository
 
         public async Task<bool> Register(Register model)
         {
-            var user = new ApplicationUser { UserName = model.Username, Email = model.Email };
+            var user = new ApplicationUser { UserName = model.Username, Email = model.Email }; 
             var result = await _userManager.CreateAsync(user, model.Password);
-            if(result.Succeeded) return true;
+            if (result.Succeeded) {
+                var assignedRoleResult = await AssignRole(user, Role.User);
+                if (assignedRoleResult)
+                {
+                    return true;
+                }
+                else
+                {
+                    await _userManager.DeleteAsync(user);
+                }
+            } 
             return false;
 
+        }
+
+        public async Task<bool> RemoveRole(ApplicationUser user, UserRole userRole)
+        {
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles.ToArray());
+            if(removeResult.Succeeded) return true;
+            return false;
+        }
+        public async Task<bool> IsExistsRole(ApplicationUser user, UserRole userRole)
+        {
+            var currentRoles = await _userManager.GetRolesAsync(user);
+            if (currentRoles.Contains(userRole.Role.ToString()))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
