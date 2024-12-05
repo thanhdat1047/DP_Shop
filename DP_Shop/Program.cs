@@ -1,4 +1,4 @@
-using DP_Shop.Data;
+﻿using DP_Shop.Data;
 using DP_Shop.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -24,6 +24,15 @@ builder.Services.AddAuthorization(options =>
     options.AddPolicy("UserPolicy", policy => policy.RequireRole("User"));
 });
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowMyApp", policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -38,6 +47,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors("AllowMyApp");
 
 app.UseHttpsRedirection();
 
