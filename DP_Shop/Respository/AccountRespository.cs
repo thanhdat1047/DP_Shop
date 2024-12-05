@@ -1,5 +1,6 @@
 ﻿using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Enum;
+using DP_Shop.DTOs.Result;
 using DP_Shop.Interface;
 using DP_Shop.Models;
 using DP_Shop.Services;
@@ -59,7 +60,7 @@ namespace DP_Shop.Respository
             return null;
         }
 
-        public async Task<bool> Register(Register model)
+        public async Task<Result<bool>> Register(Register model)
         {
             var user = new ApplicationUser { UserName = model.Username, Email = model.Email }; 
             var result = await _userManager.CreateAsync(user, model.Password);
@@ -67,14 +68,16 @@ namespace DP_Shop.Respository
                 var assignedRoleResult = await AssignRole(user, Role.User);
                 if (assignedRoleResult)
                 {
-                    return true;
+                    return new Result<bool>(true);
                 }
                 else
                 {
                     await _userManager.DeleteAsync(user);
+                    return new Result<bool>("Couldn't assigned role");
                 }
-            } 
-            return false;
+            }
+            var errorMessages = string.Join(",", result.Errors.Select(e => e.Description));
+            return new Result<bool>(errorMessages);
 
         }
 

@@ -31,11 +31,11 @@ namespace DP_Shop.Controllers
                 return BadRequest(ModelState);  
             }
             var result =  await _accountRespository.Register(model);
-            if (result)
+            if (result.Succeeded)
             {
                 return Ok(new { message = "User registered successfull" });
             }
-            return BadRequest(new { message = "Something went wrong" });
+            return BadRequest(new { message = result.ErrorMessage });
         }
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] Login model)
