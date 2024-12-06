@@ -1,8 +1,8 @@
 ﻿using DP_Shop.Data.Entities;
-using DP_Shop.DTOs.Result;
 using DP_Shop.DTOs.Users;
 using DP_Shop.Helpers;
 using DP_Shop.Interface;
+using DP_Shop.Models.Result;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -44,7 +44,7 @@ namespace DP_Shop.Respository
             return await _userManager.FindByNameAsync(username);
         }
 
-        public async Task<List<ApplicationUser>> GetUsers(QueryUser query)
+        public async Task<List<UpdateUserRequestDto>> GetUsers(QueryUser query)
         {
             var users = _userManager.Users.AsQueryable();
             if (!string.IsNullOrEmpty(query.UserName))
@@ -70,13 +70,25 @@ namespace DP_Shop.Respository
             }
             else
             {
-                // Nếu không có SortBy, mặc định sắp xếp theo UserName
                 users = users.OrderBy(u => u.UserName);
             }
 
             var skip = (query.PageNumber - 1) * query.PageSize;
             var pagedUsers = await users.Skip(skip).Take(query.PageSize).ToListAsync();
-            return pagedUsers;
+
+            var updateUserDto = new List<UpdateUserRequestDto>();
+            foreach (var user in pagedUsers)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+                updateUserDto.Add(new UpdateUserRequestDto
+                {
+                    Email = user.Email,
+                    Username = user.UserName,
+                    PhoneNumber = user.PhoneNumber,
+                    Roles = roles.ToList(),
+                });
+            }
+            return updateUserDto;
         }
 
         public async Task<Result<ApplicationUser>> UpdateAsync(string id, UpdateUserRequestDto userDto)

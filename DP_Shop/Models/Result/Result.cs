@@ -1,4 +1,4 @@
-﻿namespace DP_Shop.DTOs.Result
+﻿namespace DP_Shop.Models.Result
 {
     public class Result<T>
     {
@@ -18,7 +18,7 @@
         public Result(string errorMessage)
         {
             Succeeded = false;
-            Data = default(T);
+            Data = default;
             ErrorMessage = errorMessage;
         }
 

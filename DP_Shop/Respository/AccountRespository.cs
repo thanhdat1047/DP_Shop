@@ -1,11 +1,13 @@
 ﻿using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Enum;
-using DP_Shop.DTOs.Result;
+using DP_Shop.DTOs.Users;
 using DP_Shop.Interface;
 using DP_Shop.Models;
+using DP_Shop.Models.Result;
 using DP_Shop.Services;
 using Microsoft.AspNetCore.Identity;
 using System.Data;
+using System.Security.Cryptography;
 
 namespace DP_Shop.Respository
 {
@@ -59,7 +61,38 @@ namespace DP_Shop.Respository
             }
             return null;
         }
+        public async Task<Result<Token>> GenerateAccessToken(RefreshTokenRequest model)
+        {
+            if(model == null)
+            {
+                return new Result<Token>("Request model cannot be null.");
+            }
 
+            if(string.IsNullOrEmpty(model.Username))
+            {
+                return new Result<Token>("Username is required.");
+            }
+
+            var user = await _userManager.FindByNameAsync(model.Username);
+            if (user == null)
+            {
+                return new Result<Token>("User not found.");
+            }
+            var userRole = await _userManager.GetRolesAsync(user);
+            if (userRole == null || !userRole.Any()) 
+            {
+                return new Result<Token>("User does not have any roles assigned.");
+            }
+            try
+            {
+                var token = new Token { AccessToken = _tokenService.CreateToken(user, userRole) };
+                return new Result<Token>(token);
+            }
+            catch (Exception ex) 
+            {
+                return new Result<Token>("Error occurred while creating access token.");
+            }
+        }
         public async Task<Result<bool>> Register(Register model)
         {
             var user = new ApplicationUser { UserName = model.Username, Email = model.Email }; 
@@ -96,6 +129,64 @@ namespace DP_Shop.Respository
                 return true;
             }
             return false;
+        }
+
+        public string GenerateRefreshToken()
+        {
+            var randomBytes = new byte[32];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(randomBytes);
+            }
+            return Convert.ToBase64String(randomBytes);
+        }
+
+        public async Task SaveRefreshTokenAsync(string username, string refreshToken)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null)
+            {
+                user.RefreshToken = refreshToken;
+                user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7); 
+                await _userManager.UpdateAsync(user);
+            }
+        }
+
+        public async Task<bool> ValidateRefreshTokenAsync(string username, string refreshToken)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user != null && user.RefreshToken == refreshToken && user.RefreshTokenExpiryTime > DateTime.UtcNow)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<Result<bool>> Logout(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                return new Result<bool>("User not found.");
+            }
+            try
+            {
+                user.RefreshToken = null;
+                user.RefreshTokenExpiryTime = DateTime.MinValue;
+                var result = await _userManager.UpdateAsync(user);
+                if (!result.Succeeded)
+                {
+                    return new Result<bool>($"Failed to update user: {string.Join(", ", result.Errors.Select(e => e.Description))}");
+                }
+
+                return new Result<bool>(true);
+            }
+            catch (Exception ex)
+            {
+                // Log lỗi và inner exception
+                var innerException = ex.InnerException != null ? ex.InnerException.Message : ex.Message;
+                return new Result<bool>($"Error occurred while logging out: {innerException}");
+            }
         }
     }
 }

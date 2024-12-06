@@ -23,19 +23,26 @@ namespace DP_Shop.Controllers
         [HttpGet("users")]
         public async Task<IActionResult> GetUsers([FromBody] QueryUser query)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             var users = await _userRespository.GetUsers(query);
-            var listUserDto = users.Select(s => s.ToUserDto());
-            return Ok(listUserDto);
+            if(users != null)
+            {
+                return Ok(users);
+            }
+            return NotFound();  
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(string id)
         {
             var result = await _userRespository.DeleteAsync(id);
             if (result.Succeeded)
             {
-                return Ok(result.Data);
+                return Ok(result.Data.ToUserDto());
             }
             return BadRequest(result.ErrorMessage);
         }
