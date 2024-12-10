@@ -1,6 +1,0 @@
-@DP_Shop_HostAddress = http://localhost:5299
-
-GET {{DP_Shop_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###
