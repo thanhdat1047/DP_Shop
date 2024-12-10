@@ -62,7 +62,7 @@ namespace DP_Shop.Controllers
         }
 
 
-        [Authorize(Roles = "Admin")]
+        /*[Authorize(Roles = "Admin")]
         [HttpPost("add-role")]
         public async Task<IActionResult> AddRole([FromBody] Role role)
         {
@@ -77,7 +77,7 @@ namespace DP_Shop.Controllers
             }
             return BadRequest("Role already exists");
         }
-
+        */
 
         [Authorize(Roles = "Admin")]
         [HttpPost("assign-role")]

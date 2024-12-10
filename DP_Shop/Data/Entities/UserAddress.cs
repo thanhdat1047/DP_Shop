@@ -7,7 +7,7 @@ namespace DP_Shop.Data.Entities
         [Key]
         public int Id { get; set; }
         [Required]
-        public bool IsDefault { get; set; }
+        public bool IsDefault { get; set; } = false;
         public int AddressId { get; set; }
         public string UserId { get; set; }
 
