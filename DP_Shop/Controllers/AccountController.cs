@@ -87,29 +87,14 @@ namespace DP_Shop.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = await _userRespository.GetUserbyUsername(userRole.Username);
-            // Check user not found
-            if (user == null)
-            {
-                return BadRequest("User not found");
-            }
-            // Check user has this role
-            if(await _accountRespository.IsExistsRole(user, userRole))
-            {
-                return BadRequest(new { message = "User already has this role." });
-            }
-            // Check failed to remove role
-            if (!await _accountRespository.RemoveRole(user, userRole))
-            {
-                return BadRequest(new { message = "Failed to remove old role." });
-            }
-            // Check role assigned 
-            if (await _accountRespository.AssignRole(user, userRole.Role))
+
+            var result = await _accountRespository.AssignRole(userRole);
+            if (result.Succeeded)
             {
                 return Ok(new { message = "Role assigned successfully" });
             }
 
-            return BadRequest(new { messsage = "Couldn't assigned this role" });
+            return BadRequest(result);
         }
 
         [HttpPost("refresh-token")]

@@ -1,4 +1,6 @@
-﻿using DP_Shop.Data.Entities;
+﻿using DP_Shop.Data;
+using DP_Shop.Data.Entities;
+using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Enum;
 using DP_Shop.DTOs.Users;
 using DP_Shop.Interface;
@@ -6,6 +8,8 @@ using DP_Shop.Models;
 using DP_Shop.Models.Result;
 using DP_Shop.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Data;
 using System.Security.Cryptography;
 
@@ -17,13 +21,15 @@ namespace DP_Shop.Respository
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
         private readonly ITokenService _tokenService;
+        private readonly AppDbContext _dbContext;
 
-        public AccountRespository(ITokenService tokenService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
+        public AccountRespository(AppDbContext dbContext,  ITokenService tokenService, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _configuration = configuration;
             _tokenService = tokenService;
+            _dbContext = dbContext;
         }
         public async Task<bool> AddRole(string role)
         {
@@ -35,15 +41,48 @@ namespace DP_Shop.Respository
             return false;
         }
 
-        public async Task<bool> AssignRole(ApplicationUser user, Role role)
+        public async Task<Result<bool>> AssignRole(UserRole userRole)
         {
-            var result = await _userManager.AddToRoleAsync(user, role.ToString());
-
-            if (result.Succeeded)
+            IDbContextTransaction transaction = null;
+            try
             {
-                return true;
+                transaction = await _dbContext.Database.BeginTransactionAsync();
+
+                var user = await _userManager.FindByNameAsync(userRole.Username);
+
+                if (user == null)
+                {
+                    return new Result<bool>("User not found");
+                }
+
+                if (await IsExistsRole(user, userRole))
+                {
+                    return new Result<bool>("User already has this role.");
+                }
+                if (!await RemoveRole(user, userRole))
+                {
+                    return new Result<bool>("Failed to remove old role.");
+                }
+
+                var result = await _userManager.AddToRoleAsync(user, userRole.Role.ToString());
+
+                if (!result.Succeeded)
+                {
+                    return new Result<bool>("Couldn't assigned this role"); ;
+                }
+
+                await transaction.CommitAsync();
+                return new Result<bool>(true);
             }
-            return false;
+            catch (Exception ex) 
+            {
+                if (transaction != null)
+                {
+                    await transaction.RollbackAsync();
+                }
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<bool>(errorMessage);
+            }
         }
 
 
@@ -98,8 +137,15 @@ namespace DP_Shop.Respository
             var user = new ApplicationUser { UserName = model.Username, Email = model.Email }; 
             var result = await _userManager.CreateAsync(user, model.Password);
             if (result.Succeeded) {
-                var assignedRoleResult = await AssignRole(user, Role.User);
-                if (assignedRoleResult)
+
+                var userRole = new UserRole
+                {
+                    Username = user.UserName,
+                    Role = Role.User
+                };
+                var assignedRoleResult = await AssignRole(userRole);
+
+                if (assignedRoleResult.Succeeded)
                 {
                     return new Result<bool>(true);
                 }

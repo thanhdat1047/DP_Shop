@@ -1,6 +1,6 @@
 ﻿using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Users;
-using DP_Shop.Helpers;
+using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
 using DP_Shop.Models.Result;
 using Microsoft.AspNetCore.Identity;

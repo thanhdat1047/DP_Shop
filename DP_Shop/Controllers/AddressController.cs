@@ -1,6 +1,6 @@
 ﻿using DP_Shop.DTOs.Address;
 using DP_Shop.DTOs.Users;
-using DP_Shop.Helpers;
+using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
 using DP_Shop.Respository;
 using Microsoft.AspNetCore.Authorization;
