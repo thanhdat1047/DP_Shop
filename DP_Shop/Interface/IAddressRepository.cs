@@ -1,6 +1,6 @@
 ﻿using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Address;
-using DP_Shop.Helpers;
+using DP_Shop.Helpers.Query;
 using DP_Shop.Models.Result;
 
 namespace DP_Shop.Interface

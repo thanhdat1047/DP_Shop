@@ -1,8 +1,8 @@
-﻿namespace DP_Shop.Helpers
+﻿namespace DP_Shop.Helpers.Query
 {
-    public class QueryAddress
+    public class QueryProducts
     {
-        public string City { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
         public string? SortBy { get; set; } = null;
         public bool isDecsending { get; set; } = false;
         public int PageNumber { get; set; } = 1;

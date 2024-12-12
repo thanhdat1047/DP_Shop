@@ -1,5 +1,5 @@
 ﻿using DP_Shop.DTOs.Users;
-using DP_Shop.Helpers;
+using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
 using DP_Shop.Mappers;
 using Microsoft.AspNetCore.Authorization;

@@ -13,7 +13,7 @@ namespace DP_Shop.Interface
         public Task<Result<Boolean>> Register(Register register);
         public Task<String> Login(Login login);
         public Task<Boolean> AddRole(string role);
-        public Task<Boolean> AssignRole(ApplicationUser user, Role role);
+        public Task<Result<Boolean>> AssignRole(UserRole userRole);
         public Task<Boolean> RemoveRole(ApplicationUser user, UserRole userRole);
         public Task<Boolean> IsExistsRole(ApplicationUser user, UserRole userRole);
         public string GenerateRefreshToken();

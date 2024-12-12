@@ -1,12 +1,11 @@
-﻿namespace DP_Shop.Helpers
+﻿namespace DP_Shop.Helpers.Query
 {
-    public class QueryUser
+    public class QueryAddress
     {
-        public string UserName { get; set; } = string.Empty;
+        public string City { get; set; } = string.Empty;
         public string? SortBy { get; set; } = null;
         public bool isDecsending { get; set; } = false;
         public int PageNumber { get; set; } = 1;
         public int PageSize { get; set; } = 10;
-
     }
 }
