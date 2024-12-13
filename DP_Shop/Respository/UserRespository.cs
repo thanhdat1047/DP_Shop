@@ -1,7 +1,9 @@
 ﻿using DP_Shop.Data.Entities;
+using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Users;
 using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
+using DP_Shop.Mappers;
 using DP_Shop.Models.Result;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -42,6 +44,25 @@ namespace DP_Shop.Respository
         public async Task<ApplicationUser> GetUserbyUsername(string username)
         {
             return await _userManager.FindByNameAsync(username);
+        }
+
+        public async Task<Result<UserDto>> GetUserProfile(string id)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(id);
+                if (user == null)
+                {
+                    return new Result<UserDto>("User not found");
+                }
+                return new Result<UserDto>(user.ToUserDto());
+
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<UserDto>(errorMessage);
+            }
         }
 
         public async Task<List<UpdateUserRequestDto>> GetUsers(QueryUser query)

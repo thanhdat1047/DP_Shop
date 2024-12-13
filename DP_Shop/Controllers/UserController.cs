@@ -65,6 +65,28 @@ namespace DP_Shop.Controllers
         }
 
         [Authorize]
+        [HttpGet("profile/")]
+        public async Task<IActionResult> GetUserProfile()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userID = User.FindFirst("userId");
+            if (userID == null)
+            {
+                return NotFound("User not found");
+            }
+            var result = await _userRespository.GetUserProfile(userID.Value);
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Data);
+
+        }
+
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUserByID([FromRoute] string id, [FromBody] UpdateUserRequestDto updateUserRequestDto)
         {

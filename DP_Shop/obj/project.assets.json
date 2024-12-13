@@ -7944,11 +7944,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
+      "projectUniqueName": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
       "projectName": "DP_Shop",
-      "projectPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
+      "projectPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
       "packagesPath": "C:\\Users\\thanhdat\\.nuget\\packages\\",
-      "outputPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop\\obj\\",
+      "outputPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\thanhdat\\AppData\\Roaming\\NuGet\\NuGet.Config",

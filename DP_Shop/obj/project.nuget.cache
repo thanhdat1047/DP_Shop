@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "P9DWgxgSin4=",
+  "dgSpecHash": "7n2x7QxFOvQ=",
   "success": true,
-  "projectFilePath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
+  "projectFilePath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DP_Shop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\thanhdat\\.nuget\\packages\\azure.core\\1.38.0\\azure.core.1.38.0.nupkg.sha512",
     "C:\\Users\\thanhdat\\.nuget\\packages\\azure.identity\\1.11.4\\azure.identity.1.11.4.nupkg.sha512",
