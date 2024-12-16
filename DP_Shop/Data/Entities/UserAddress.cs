@@ -9,9 +9,9 @@ namespace DP_Shop.Data.Entities
         [Required]
         public bool IsDefault { get; set; } = false;
         public int AddressId { get; set; }
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
-        public Address Address { get; set; }
-        public ApplicationUser User { get; set; }
+        public Address? Address { get; set; }
+        public ApplicationUser? User { get; set; }
     }
 }

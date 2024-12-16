@@ -12,6 +12,8 @@ namespace DP_Shop.Data
         public DbSet<Address> Addresses { get; set; }
         public DbSet<UserAddress> UserAddresses { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<Image> Images { get; set; }
+        public DbSet<ProductImage> ProductImages { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Cart> Carts { get; set; }

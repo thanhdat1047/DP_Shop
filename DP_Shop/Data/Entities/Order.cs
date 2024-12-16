@@ -12,11 +12,11 @@ namespace DP_Shop.Data.Entities
         public decimal Total { get; set; }
         [Required]
         public string Status { get; set; } = string.Empty;
-        public string UserId { get; set; }
+        public string UserId { get; set; } = string.Empty;
 
-        public ApplicationUser User { get; set; }   
+        public ApplicationUser? User { get; set; }   
 
-        public ICollection<OrderProduct> OrderProducts { get; set; } 
+        public ICollection<OrderProduct>? OrderProducts { get; set; } 
 
 
     }

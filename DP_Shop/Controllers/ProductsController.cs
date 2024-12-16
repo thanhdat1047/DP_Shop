@@ -1,111 +1,176 @@
-﻿/*using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using DP_Shop.Data;
-using DP_Shop.Models;
+﻿using DP_Shop.DTOs.Address;
+using DP_Shop.DTOs.Categories;
+using DP_Shop.DTOs.Images;
+using DP_Shop.DTOs.Products;
+using DP_Shop.DTOs.Users;
+using DP_Shop.Helpers.Query;
+using DP_Shop.Interface;
+using DP_Shop.Respository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DP_Shop.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly AppDbContext _context;
-
-        public ProductsController(AppDbContext context)
+        private readonly IProductRespository _productRespository; 
+        public ProductsController(IProductRespository productRespository)
         {
-            _context = context;
+            _productRespository = productRespository; 
+        }
+        [Authorize(Roles ="Admin")]
+        [HttpPost("admin")]
+        public async Task<IActionResult> CreateProduct(ProductWithImagesRequest request)
+        {
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _productRespository.CreateAsync(request);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.ErrorMessage);
+            }
+            return Ok(result.Data);
         }
 
-        // GET: api/Products
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Products>>> GetProducts()
+        [HttpGet("list")]
+        public async Task<IActionResult> GetProducts([FromBody] QueryProducts query)
         {
-            return await _context.Products.ToListAsync();
+            if (!ModelState.IsValid) 
+            {
+                return BadRequest(ModelState);  
+            }
+            var result = await _productRespository.GetAll(query);
+            if(result.Succeeded)
+            {
+                return Ok(result.Data); 
+            }
+            return BadRequest(result.ErrorMessage);
         }
 
-        // GET: api/Products/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Products>> GetProducts(int id)
+        public async Task<IActionResult> GetProductById([FromRoute] int id)
         {
-            var products = await _context.Products.FindAsync(id);
-
-            if (products == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound();
+                return BadRequest(ModelState);
             }
-
-            return products;
+            var result = await _productRespository.GetById(id);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
         }
 
-        // PUT: api/Products/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutProducts(int id, Products products)
+        [Authorize(Roles = "Admin")]
+        [HttpDelete("admin/{id}")]
+        public async Task<IActionResult> DeleteCategory([FromRoute] int id)
         {
-            if (id != products.ProductId)
+            if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(ModelState);
             }
 
-            _context.Entry(products).State = EntityState.Modified;
-
-            try
+            if (!await _productRespository.ProductExists(id))
             {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductsExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return NotFound("Product not found");
             }
 
-            return NoContent();
-        }
-
-        // POST: api/Products
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Products>> PostProducts(Products products)
-        {
-            _context.Products.Add(products);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetProducts", new { id = products.ProductId }, products);
-        }
-
-        // DELETE: api/Products/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteProducts(int id)
-        {
-            var products = await _context.Products.FindAsync(id);
-            if (products == null)
+            var result = await _productRespository.DeleteById(id);
+            if (result.Succeeded)
             {
-                return NotFound();
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("admin/{id}")]
+        public async Task<IActionResult> UpdateAddress([FromRoute] int id, [FromBody] CreateProductRequest productRequest)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            if (!await _productRespository.ProductExists(id))
+            {
+                return NotFound("Product not found");
             }
 
-            _context.Products.Remove(products);
-            await _context.SaveChangesAsync();
+            var result = await _productRespository.UpdateAsync(id, productRequest);
 
-            return NoContent();
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
         }
 
-        private bool ProductsExists(int id)
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/soft-deleted-list")]
+        public async Task<IActionResult> GetSoftDeletedList([FromBody] QueryProducts query)
         {
-            return _context.Products.Any(e => e.ProductId == id);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _productRespository.GetSoftDeletedList(query);
+
+            if (result == null)
+            {
+                return BadRequest(new { message = "List of product is null" });
+            }
+            return Ok(result);
         }
-    }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("admin/soft-delete/{id}")]
+        public async Task<IActionResult> SoftDeleteProduct([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _productRespository.ProductExists(id))
+            {
+                return NotFound("Product not found");
+            }
+
+            var result = await _productRespository.SoftDeleteAsync(id);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("admin/restore/{id}")]
+        public async Task<IActionResult> RestoreProduct([FromRoute] int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (!await _productRespository.ProductExists(id))
+            {
+                return NotFound("Category not found");
+            }
+
+            var result = await _productRespository.RestoreAsync(id);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+    }    
 }
-*/

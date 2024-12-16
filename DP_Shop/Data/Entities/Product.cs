@@ -13,16 +13,15 @@ namespace DP_Shop.Data.Entities
         [Required]
         public string Description { get; set; } = string.Empty;
         [Required]
-        public int Quantity { get; set; } 
-        [Required]
-        public string Image { get; set; } = string.Empty;
+        public int Quantity { get; set; }
+        public List<ProductImage> ProductImages { get; set; } = new List<ProductImage>();
         [Required]
         public DateTime CreatedAt { get; set; }  = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
+        public Category? Category { get; set; }
   
 
     }
