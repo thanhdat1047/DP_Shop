@@ -78,6 +78,7 @@ namespace DP_Shop.Controllers
             }
             return BadRequest(result.ErrorMessage);
         }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCategorysById([FromRoute] int id)
         {

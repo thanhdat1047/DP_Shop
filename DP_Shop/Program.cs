@@ -1,4 +1,5 @@
 using DP_Shop.Data;
+using DP_Shop.Data.Entities;
 using DP_Shop.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -68,7 +69,14 @@ builder.Services.AddSwaggerGen(c =>
 });
 var app = builder.Build();
 
-
+// Migration and seek
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+    await SeedData.Initialize(services, userManager, roleManager);
+}
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

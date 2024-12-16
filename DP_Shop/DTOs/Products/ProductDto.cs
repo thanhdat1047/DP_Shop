@@ -14,11 +14,10 @@ namespace DP_Shop.DTOs.Products
         [Required]
         public int Quantity { get; set; }
         [Required]
-        public string Image { get; set; } = string.Empty;
-        [Required]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
         public DateTime? ExpiryDate { get; set; }
+        public int? CategoryId { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Enum;
+using DP_Shop.DTOs.Products;
 using DP_Shop.DTOs.Users;
 using DP_Shop.Interface;
 using DP_Shop.Models;
@@ -129,7 +130,8 @@ namespace DP_Shop.Respository
             }
             catch (Exception ex) 
             {
-                return new Result<Token>("Error occurred while creating access token.");
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<Token>(errorMessage);
             }
         }
         public async Task<Result<bool>> Register(Register model)
