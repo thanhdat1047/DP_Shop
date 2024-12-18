@@ -3,24 +3,48 @@
   "WorkspaceRootPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\imagerespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\imagerespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iimagerespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iimagerespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\imagescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\extensions\\applicationserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\extensions\\applicationserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\mappers\\imagemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\mappers\\imagemapper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\helpers\\query\\queryproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\helpers\\query\\queryproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\categoriescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\images\\imagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\images\\imagedto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iproductrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iproductrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\categoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\categoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\helpers\\query\\queryimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\helpers\\query\\queryimages.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,77 +54,155 @@
       "DocumentGroups": [
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "DP_Shop\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAGIAAAAAAAAAAAAswA8AAAA0AAAA",
+              "DocumentIndex": 5,
+              "Title": "ApplicationServiceExtensions.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "RelativeToolTip": "DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T01:14:13.932Z",
+              "WhenOpened": "2024-12-18T03:16:28.493Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
+              "Title": "ImageDto.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Images\\ImageDto.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Images\\ImageDto.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Images\\ImageDto.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Images\\ImageDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T02:50:03.647Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "AddressRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ViewState": "AQIAAN8AAAAAAAAAAAAwwPIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T02:01:18.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ProductRespository.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Respository\\ProductRespository.cs",
               "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
               "RelativeToolTip": "DP_Shop\\Respository\\ProductRespository.cs",
-              "ViewState": "AQIAAFkAAAAAAAAAAAAcwG8AAAAtAAAA",
+              "ViewState": "AQIAAHsAAAAAAAAAAAAwwIsAAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-15T09:14:18.152Z",
+              "WhenOpened": "2024-12-18T01:59:50.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IImageRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IImageRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IImageRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IImageRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Interface\\IImageRespository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T01:57:33.562Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ImagesController.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ImagesController.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\ImagesController.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ImagesController.cs",
+              "RelativeToolTip": "DP_Shop\\Controllers\\ImagesController.cs",
+              "ViewState": "AQIAACAAAAAAAAAAAAAQwBcAAAAjAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T08:51:54.31Z",
               "EditorCaption": ""
             }
           ]
         },
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "CategoriesController.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CategoriesController.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\CategoriesController.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CategoriesController.cs",
-              "RelativeToolTip": "DP_Shop\\Controllers\\CategoriesController.cs",
-              "ViewState": "AQIAAJgAAAAAAAAAAAAowLQAAAAJAAAA",
+              "DocumentIndex": 6,
+              "Title": "ImageMapper.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\ImageMapper.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Mappers\\ImageMapper.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\ImageMapper.cs",
+              "RelativeToolTip": "DP_Shop\\Mappers\\ImageMapper.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAAAAABMAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T01:14:23.908Z",
+              "WhenOpened": "2024-12-18T02:06:40.233Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IProductRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IProductRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IProductRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IProductRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Interface\\IProductRespository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAoAAAA",
+              "DocumentIndex": 7,
+              "Title": "QueryProducts.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryProducts.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Helpers\\Query\\QueryProducts.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryProducts.cs",
+              "RelativeToolTip": "DP_Shop\\Helpers\\Query\\QueryProducts.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T01:12:29.66Z",
+              "WhenOpened": "2024-12-18T01:55:43.991Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "CategoryRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CategoryRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Respository\\CategoryRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CategoryRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Respository\\CategoryRespository.cs",
-              "ViewState": "AQIAAIsAAAAAAAAAAADwv7EAAAASAAAA",
+              "DocumentIndex": 10,
+              "Title": "QueryImages.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryImages.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Helpers\\Query\\QueryImages.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryImages.cs",
+              "RelativeToolTip": "DP_Shop\\Helpers\\Query\\QueryImages.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAcAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-16T01:05:06.781Z",
+              "WhenOpened": "2024-12-18T01:55:39.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ImageRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ImageRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\ImageRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ImageRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\ImageRespository.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAYwFUAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-18T01:54:09.5Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ProductsController.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\ProductsController.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
+              "RelativeToolTip": "DP_Shop\\Controllers\\ProductsController.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwAMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-17T08:54:03.637Z",
               "EditorCaption": ""
             }
           ]

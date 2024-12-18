@@ -14,8 +14,26 @@ namespace DP_Shop.Mappers
                 Description = request.Description,
             };
         }
+        public static Image ToImage(this ImageRequest request)
+        {
+            return new Image
+            {
+                Url = request.Url,
+                Description = request.Description,
+            };
+        }
 
         public static ImageDto ToImageDto(this Image request)
+        {
+            return new ImageDto
+            {
+                Id = request.Id,
+                Url = request.Url,
+                Description = request.Description,
+            };
+        }
+
+        public static ImageDto ToImageDto(this ImageRequest request)
         {
             return new ImageDto
             {

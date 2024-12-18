@@ -52,6 +52,21 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
+        [HttpGet("list/category/{id}")]
+        public async Task<IActionResult> GetProductByCategoryId([FromRoute] int id,[FromBody] QueryProducts query)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _productRespository.GetProductByCategoryId(query,id);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetProductById([FromRoute] int id)
         {
