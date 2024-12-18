@@ -1,4 +1,5 @@
-﻿using DP_Shop.DTOs.Categories;
+﻿using DP_Shop.Data.Entities;
+using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Images;
 using DP_Shop.DTOs.Products;
 using DP_Shop.Helpers.Query;
@@ -10,6 +11,7 @@ namespace DP_Shop.Interface
     {
         Task<Result<ProductResponse>> GetById(int id);
         Task<Result<List<ProductResponse>>> GetAll(QueryProducts query);
+        Task<Result<List<ProductResponse>>> GetProductByCategoryId(QueryProducts query, int cateId);
         Task<Result<ProductDto>> CreateAsync(ProductWithImagesRequest model);
         Task<Result<ProductDto>> UpdateAsync(int id, CreateProductRequest model);
         Task<Result<Boolean>> DeleteById(int id);
@@ -17,6 +19,9 @@ namespace DP_Shop.Interface
         Task<Result<Boolean>> SoftDeleteAsync(int id);
         Task<Result<Boolean>> RestoreAsync(int id);
         Task<Boolean> ProductExists(int id);
+        Task<Result<List<ProductResponse>>> GetProductsWithFilters(QueryProducts query, Func<IQueryable<Product>, IQueryable<Product>>? filter = null);
+
+
 
 
 

@@ -105,94 +105,40 @@ namespace DP_Shop.Respository
 
         public async Task<Result<List<ProductResponse>>> GetAll(QueryProducts query)
         {
-            try
-            {
-                var products = _dbContext.Products
-                    .AsQueryable()
-                    .Where(p => p.DeletedAt == null);
-
-                if (!string.IsNullOrEmpty(query.Name))
-                {
-                    products = products.Where(p => p.Name.Contains(query.Name));
-                }
-
-                if (!string.IsNullOrEmpty(query.SortBy))
-                {
-                    switch (query.SortBy.ToLower())
-                    {
-                        case "name":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.Name) : products.OrderBy(p => p.Name);
-                            break;
-                        case "price":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.Price) : products.OrderBy(p => p.Price);
-                            break;
-                        case "expirydate":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.ExpiryDate) : products.OrderBy(p => p.ExpiryDate);
-                            break;
-                        default:
-                            products = products.OrderBy(p => p.Name);
-                            break;
-                    }
-                }
-                else
-                {
-                    products = products.OrderBy(p => p.Name);
-                }
-
-                var skip = (query.PageNumber - 1) * query.PageSize;
-                var pageProducts = await products.Skip(skip).Take(query.PageSize).ToListAsync();
-
-                var listProductResponse = new List<ProductResponse>();  
-
-                foreach(var product in pageProducts)
-                {
-                    var imageDtos  = await _dbContext.ProductImages
-                        .Where(pi => pi.ProductId == product.Id)
-                        .Select(pi => pi.Image)
-                        .Select(image => new ImageDto
-                        {
-                            Url = image.Url,
-                            Description = image.Description
-                        })
-                        .ToListAsync();
-
-                    listProductResponse.Add(new ProductResponse
-                    {
-                        Product = product.ToProductDto(),   
-                        ImageDtos = imageDtos
-                    });
-                }
-
-                return new Result<List<ProductResponse>>(listProductResponse);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<List<ProductResponse>>(errorMessage);
-            }
-
+            return await GetProductsWithFilters(query, productsQuery => productsQuery.Where(p => p.DeletedAt == null));
         }
+        public async Task<Result<List<ProductResponse>>> GetProductByCategoryId(QueryProducts query, int cateId)
+        {
+            return await GetProductsWithFilters(query, productsQuery => productsQuery.Where(p => p.DeletedAt == null && p.CategoryId == cateId));  
+        }
+        public async Task<Result<List<ProductResponse>>> GetSoftDeletedList(QueryProducts query)
+        {
+            return await GetProductsWithFilters(query, productsQuery => productsQuery.Where(p => p.DeletedAt != null));
+        }
+    
+
 
         public async Task<Result<ProductResponse>> GetById(int id)
         {
             try
             {
-                if(!await ProductExists(id))
-                {
-                    return new Result<ProductResponse>("Product not found");
-                }
 
                 var product = await _dbContext.Products
                     .AsNoTracking()
                     .SingleOrDefaultAsync(p => p.Id == id);
 
+                if (product == null)
+                {
+                    return new Result<ProductResponse>("Product not found");
+                }
                 var images = await _dbContext.ProductImages
                     .AsNoTracking()
                     .Where(pi => pi.ProductId == id)
                     .Select(pi => pi.Image)
                     .Select(image => new ImageDto
                     {
-                        Url = image.Url,
+                        Id = image!.Id,
+                        Url = image!.Url,
                         Description = image.Description
                     }).ToListAsync();
 
@@ -210,75 +156,6 @@ namespace DP_Shop.Respository
                 return new Result<ProductResponse>(errorMessage);
             }
 
-        }
-
-        public async Task<Result<List<ProductResponse>>> GetSoftDeletedList(QueryProducts query)
-        {
-            try
-            {
-                var products = _dbContext.Products
-                    .AsQueryable()
-                    .Where(p => p.DeletedAt != null);
-
-                if (!string.IsNullOrEmpty(query.Name))
-                {
-                    products = products.Where(p => p.Name.Contains(query.Name));
-                }
-
-                if (!string.IsNullOrEmpty(query.SortBy))
-                {
-                    switch (query.SortBy.ToLower())
-                    {
-                        case "name":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.Name) : products.OrderBy(p => p.Name);
-                            break;
-                        case "price":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.Price) : products.OrderBy(p => p.Price);
-                            break;
-                        case "expirydate":
-                            products = query.isDecsending ? products.OrderByDescending(p => p.ExpiryDate) : products.OrderBy(p => p.ExpiryDate);
-                            break;
-                        default:
-                            products = products.OrderBy(p => p.Name);
-                            break;
-                    }
-                }
-                else
-                {
-                    products = products.OrderBy(p => p.Name);
-                }
-
-                var skip = (query.PageNumber - 1) * query.PageSize;
-                var pageProducts = await products.Skip(skip).Take(query.PageSize).ToListAsync();
-
-                var listProductResponse = new List<ProductResponse>();
-
-                foreach (var product in pageProducts)
-                {
-                    var imageDtos = await _dbContext.ProductImages
-                        .Where(pi => pi.ProductId == product.Id)
-                        .Select(pi => pi.Image)
-                        .Select(image => new ImageDto
-                        {
-                            Url = image.Url,
-                            Description = image.Description
-                        })
-                        .ToListAsync();
-
-                    listProductResponse.Add(new ProductResponse
-                    {
-                        Product = product.ToProductDto(),
-                        ImageDtos = imageDtos
-                    });
-                }
-
-                return new Result<List<ProductResponse>>(listProductResponse);
-            }
-            catch (Exception ex)
-            {
-                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<List<ProductResponse>>(errorMessage);
-            }
         }
 
         public async Task<bool> ProductExists(int id)
@@ -431,5 +308,78 @@ namespace DP_Shop.Respository
                 return new Result<ProductDto>(errorMessage);
             }
         }
+
+
+        public async Task<Result<List<ProductResponse>>> GetProductsWithFilters(QueryProducts query, Func<IQueryable<Product>, IQueryable<Product>>? filter = null)
+        {
+            try 
+            {
+                var productsQuery = _dbContext.Products.AsQueryable();
+                if(filter != null)
+                {
+                    productsQuery = filter(productsQuery);    
+                }
+                if(!string.IsNullOrEmpty(query.Name))
+                {
+                    productsQuery = productsQuery.Where(p => p.Name.Contains(query.Name));    
+                }
+
+                if (!string.IsNullOrEmpty(query.SortBy))
+                {
+                    productsQuery = ApplySorting(productsQuery, query);
+                }
+                else
+                {
+                    productsQuery = productsQuery.OrderBy(p => p.Name);
+                }
+                // Phân trang
+                var skip = (query.PageNumber - 1) * query.PageSize;
+                var pageProducts = await productsQuery.Skip(skip).Take(query.PageSize).ToListAsync();
+
+
+                var listProductResponse = new List<ProductResponse>();
+                foreach (var product in pageProducts)
+                {
+                    // Lấy thông tin hình ảnh cho từng sản phẩm
+                    var imageDtos = await _dbContext.ProductImages
+                        .Where(pi => pi.ProductId == product.Id)
+                        .Select(pi => new ImageDto
+                        {
+                            Id = pi.Image.Id,
+                            Url = pi.Image.Url,
+                            Description = pi.Image.Description
+                        })
+                        .ToListAsync();
+
+                    listProductResponse.Add(new ProductResponse
+                    {
+                        Product = product.ToProductDto(),
+                        ImageDtos = imageDtos
+                    });
+                }
+
+                return new Result<List<ProductResponse>>(listProductResponse);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<List<ProductResponse>>(errorMessage);
+            }
+        }
+        private IQueryable<Product> ApplySorting(IQueryable<Product> productsQuery, QueryProducts query)
+        {
+            switch (query.SortBy!.ToLower())
+            {
+                case "name":
+                    return query.isDecsending ? productsQuery.OrderByDescending(p => p.Name) : productsQuery.OrderBy(p => p.Name);
+                case "price":
+                    return query.isDecsending ? productsQuery.OrderByDescending(p => p.Price) : productsQuery.OrderBy(p => p.Price);
+                case "expirydate":
+                    return query.isDecsending ? productsQuery.OrderByDescending(p => p.ExpiryDate) : productsQuery.OrderBy(p => p.ExpiryDate);
+                default:
+                    return productsQuery.OrderBy(p => p.Name);
+            }
+        }
+
     }
 }
