@@ -2,7 +2,7 @@
 
 namespace DP_Shop.DTOs.Products
 {
-    public class ProductDto
+    public class ProductDtoResponse
     {
         public int Id { get; set; }
         [Required]
@@ -19,6 +19,7 @@ namespace DP_Shop.DTOs.Products
         public DateTime? DeletedAt { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public int? CategoryId { get; set; }
+        public string? Slug { get; set; } = string.Empty;
         
     }
 }

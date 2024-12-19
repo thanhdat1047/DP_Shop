@@ -82,6 +82,21 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
+        [HttpGet("slug/{slug}")]
+        public async Task<IActionResult> GetProductBySlug(string slug)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _productRespository.GetBySlug(slug);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
         [Authorize(Roles = "Admin")]
         [HttpDelete("admin/{id}")]
         public async Task<IActionResult> DeleteCategory([FromRoute] int id)
@@ -106,7 +121,7 @@ namespace DP_Shop.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("admin/{id}")]
-        public async Task<IActionResult> UpdateAddress([FromRoute] int id, [FromBody] CreateProductRequest productRequest)
+        public async Task<IActionResult> UpdateAddress([FromRoute] int id, [FromBody] UpdateProductRequest productRequest)
         {
             if (!ModelState.IsValid)
             {
@@ -145,7 +160,7 @@ namespace DP_Shop.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPut("admin/soft-delete/{id}")]
+        [HttpDelete("admin/soft-delete/{id}")]
         public async Task<IActionResult> SoftDeleteProduct([FromRoute] int id)
         {
             if (!ModelState.IsValid)

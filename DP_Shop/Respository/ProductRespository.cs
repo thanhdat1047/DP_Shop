@@ -21,7 +21,7 @@ namespace DP_Shop.Respository
 
         }
         // them san pham
-        public async Task<Result<ProductDto>> CreateAsync(ProductWithImagesRequest model)
+        public async Task<Result<ProductDtoResponse>> CreateAsync(ProductWithImagesRequest model)
         {
             IDbContextTransaction transaction = null;
             try
@@ -31,17 +31,28 @@ namespace DP_Shop.Respository
                 // Kiem tra ngay het han
                 if (model.Product.ExpiryDate < DateTime.Now)
                 {
-                    return new Result<ProductDto>("The expiration date must be after the current date.");
+                    return new Result<ProductDtoResponse>("The expiration date must be after the current date.");
                 }
 
                 // Kiem tra category hop le
                 if(!await _dbContext.Categories.AnyAsync(c => c.Id == model.Product.CategoryId))
                 {
-                    return new Result<ProductDto>("Category not found");
+                    return new Result<ProductDtoResponse>("Category not found");
                 }
 
+                
                 // Tao product
                 var newProduct = model.Product.ToProduct();
+
+                newProduct.GenerateSlug();
+                var exestingProduct = await _dbContext.Products
+                    .FirstOrDefaultAsync(p => p.Slug == newProduct.Slug);
+                if (exestingProduct != null) 
+                {
+                    return new Result<ProductDtoResponse>("A product with this slug already exists.");
+                }
+
+
                 await _dbContext.Products.AddAsync(newProduct);
 
                 var images = model.ImageDtos.Select( img => new Image
@@ -68,7 +79,7 @@ namespace DP_Shop.Respository
                 // Commit
                 await transaction.CommitAsync();
 
-                return new Result<ProductDto>(newProduct.ToProductDto());   
+                return new Result<ProductDtoResponse>(newProduct.ToProductDtoResponse());   
             }
             catch (Exception ex)
             {
@@ -78,7 +89,7 @@ namespace DP_Shop.Respository
                 }
 
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<ProductDto>(errorMessage);
+                return new Result<ProductDtoResponse>(errorMessage);
             }
         }
 
@@ -115,9 +126,45 @@ namespace DP_Shop.Respository
         {
             return await GetProductsWithFilters(query, productsQuery => productsQuery.Where(p => p.DeletedAt != null));
         }
-    
 
+        public async Task<Result<ProductResponse>> GetBySlug(string slug)
+        {
+            try
+            {
 
+                var product = await _dbContext.Products
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(p => p.Slug == slug);
+
+                if (product == null)
+                {
+                    return new Result<ProductResponse>("Product not found");
+                }
+                var images = await _dbContext.ProductImages
+                    .AsNoTracking()
+                    .Where(pi => pi.ProductId == product.Id)
+                    .Select(pi => pi.Image)
+                    .Select(image => new ImageDto
+                    {
+                        Id = image!.Id,
+                        Url = image!.Url,
+                        Description = image.Description
+                    }).ToListAsync();
+
+                var productResponse = new ProductResponse
+                {
+                    Product = product.ToProductDtoResponse(),
+                    ImageDtos = images
+                };
+
+                return new Result<ProductResponse>(productResponse);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<ProductResponse>(errorMessage);
+            }
+        }
         public async Task<Result<ProductResponse>> GetById(int id)
         {
             try
@@ -144,7 +191,7 @@ namespace DP_Shop.Respository
 
                 var productResponse = new ProductResponse
                 {
-                    Product = product.ToProductDto(),
+                    Product = product.ToProductDtoResponse(),
                     ImageDtos = images
                 };
 
@@ -207,13 +254,16 @@ namespace DP_Shop.Respository
             }
         }
 
-        public async Task<Result<ProductDto>> UpdateAsync(int id, CreateProductRequest model)
+        public async Task<Result<ProductDto>> UpdateAsync(int id, UpdateProductRequest model)
         {
             IDbContextTransaction transaction = null;
             try
             {
-                transaction = await _dbContext.Database.BeginTransactionAsync();
-
+                
+                if(model.Id != id)
+                {
+                    return new Result<ProductDto>("Id is not matched");
+                }
                 // Kiem tra ngay het han
                 if (model.ExpiryDate < DateTime.Now)
                 {
@@ -225,7 +275,7 @@ namespace DP_Shop.Respository
                 {
                     return new Result<ProductDto>("Category not found");
                 }
-
+                transaction = await _dbContext.Database.BeginTransactionAsync();
                 // Lay san pham hien tai
                 var existingProduct = await _dbContext.Products
                     .Include(p => p.ProductImages)
@@ -246,54 +296,25 @@ namespace DP_Shop.Respository
                 existingProduct.CategoryId = model.CategoryId;
                 existingProduct.UpdatedAt = DateTime.Now;
 
-               /* var newImages = model.ImageDtos.Select(img => new Image
+                if(existingProduct.Name != model.Name)
                 {
-                    Url = img.Url,
-                    Description = img.Description,
-                }).ToList();
+                    existingProduct.GenerateSlug();
 
-                // Xoa anh cu neu co
-                var imagesToRemove = existingProduct.ProductImages
-                    .Select(pi => pi.Image)
-                    .Where(image => image != null) 
-                    .ToList();
-
-                if (imagesToRemove.Any())  
-                {
-                    _dbContext.Images.RemoveRange(imagesToRemove!);
+                    var duplicateSlug = await _dbContext.Products
+                        .FirstOrDefaultAsync(p => p.Slug == existingProduct.Slug && p.Id != id);
+                    if(duplicateSlug != null)
+                    {
+                        return new Result<ProductDto>("The generated slug already exists. Please use a different name. ");
+                    }
                 }
-                // Them hinh anh moi
-                await _dbContext.Images.AddRangeAsync(newImages);
-                await _dbContext.SaveChangesAsync();
 
-
-                // Cap nhat lien ket hinh anh va product
-                var updatedProductImages = newImages.Select(image => new ProductImage
-                {
-                    ProductId = existingProduct.Id,
-                    ImageId = image.Id,
-                }).ToList();
-
-                // Xoa lien ket cu
-                _dbContext.ProductImages.RemoveRange(existingProduct.ProductImages);
-
-                // Them lien ket moi
-                await _dbContext.ProductImages.AddRangeAsync(updatedProductImages);
-                await _dbContext.SaveChangesAsync();*/
-
+                _dbContext.Products.Update(existingProduct);    
                 // Luu 
                 await _dbContext.SaveChangesAsync();
 
                 // Commit
                 await transaction.CommitAsync();
 
-               /* var listImageDtos = new List<ImageDto>();
-                foreach(var img in newImages)
-                {
-                    listImageDtos.Add(img.ToImageDto());    
-                }*/
-
-                //var productResponse = existingProduct.ToProductDto();
 
                 return new Result<ProductDto>(existingProduct.ToProductDto());
             }
@@ -345,7 +366,7 @@ namespace DP_Shop.Respository
                         .Where(pi => pi.ProductId == product.Id)
                         .Select(pi => new ImageDto
                         {
-                            Id = pi.Image.Id,
+                            Id = pi.Image!.Id,
                             Url = pi.Image.Url,
                             Description = pi.Image.Description
                         })
@@ -353,7 +374,7 @@ namespace DP_Shop.Respository
 
                     listProductResponse.Add(new ProductResponse
                     {
-                        Product = product.ToProductDto(),
+                        Product = product.ToProductDtoResponse(),
                         ImageDtos = imageDtos
                     });
                 }
@@ -380,6 +401,7 @@ namespace DP_Shop.Respository
                     return productsQuery.OrderBy(p => p.Name);
             }
         }
+
 
     }
 }
