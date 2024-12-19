@@ -37,6 +37,24 @@ namespace DP_Shop.Mappers
                 CategoryId = product.CategoryId,    
             };
         }
+
+        public static ProductDtoResponse ToProductDtoResponse(this Product product)
+        {
+            return new ProductDtoResponse
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Price = product.Price,
+                Quantity = product.Quantity,
+                Description = product.Description,
+                CreatedAt = product.CreatedAt,
+                UpdatedAt = product.UpdatedAt,
+                DeletedAt = product.DeletedAt,
+                ExpiryDate = product.ExpiryDate,
+                CategoryId = product.CategoryId,
+                Slug = product.Slug,    
+            };
+        }
         public static Product ToProduct(this CreateProductRequest productDto)
         {
             return new Product

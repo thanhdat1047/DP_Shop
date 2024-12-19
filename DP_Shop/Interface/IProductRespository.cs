@@ -10,10 +10,11 @@ namespace DP_Shop.Interface
     public interface IProductRespository
     {
         Task<Result<ProductResponse>> GetById(int id);
+        Task<Result<ProductResponse>> GetBySlug(string slug);
         Task<Result<List<ProductResponse>>> GetAll(QueryProducts query);
         Task<Result<List<ProductResponse>>> GetProductByCategoryId(QueryProducts query, int cateId);
-        Task<Result<ProductDto>> CreateAsync(ProductWithImagesRequest model);
-        Task<Result<ProductDto>> UpdateAsync(int id, CreateProductRequest model);
+        Task<Result<ProductDtoResponse>> CreateAsync(ProductWithImagesRequest model);
+        Task<Result<ProductDto>> UpdateAsync(int id, UpdateProductRequest model);
         Task<Result<Boolean>> DeleteById(int id);
         Task<Result<List<ProductResponse>>> GetSoftDeletedList(QueryProducts query); 
         Task<Result<Boolean>> SoftDeleteAsync(int id);

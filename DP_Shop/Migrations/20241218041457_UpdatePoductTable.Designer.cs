@@ -4,6 +4,7 @@ using DP_Shop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DP_Shop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241218041457_UpdatePoductTable")]
+    partial class UpdatePoductTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -169,22 +172,6 @@ namespace DP_Shop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9631),
-                            Description = "Sản phẩm truyền thống",
-                            Name = "Sản phẩm truyền thống"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9634),
-                            Description = "Sản phẩm hiện đại",
-                            Name = "Sản phẩm hiện đại"
-                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Image", b =>
@@ -205,116 +192,6 @@ namespace DP_Shop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Images");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Bánh Ép Huế Vị Thịt Nướng 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734498100/chinh-300x300_tfdduo.png"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Bánh Ép Huế Vị Thịt Nướng 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734498099/Artboard-391-300x300_o3uacb.png"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579317/2-300x300_rpepfq.jpg"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579317/3_ciytdq.jpg"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579318/Thiet-ke-chua-co-ten_w83xbi.jpg"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/5-300x300_xkcm3z.jpg"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/4-300x300_kkdq5f.jpg"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/1-300x300_yn7thr.jpg"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579658/Artboard-351-300x300_ceyyrk.png"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579658/chinh-2-300x300_cf7cqt.png"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/Artboard-361-300x300_ie5h9h.png"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/chinh-3-300x300_j5x0wl.png"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Description = "Bánh ép Huế chay vị Sen Huế 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580057/Sen-768x576_mth6jv.png"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580131/9-300x300_rzn0md.jpg"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580132/12-300x300_mljbgd.jpg"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580133/Nam-1-300x300_vfz61t.png"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            Description = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580226/Artboard-391-300x300_jvirsd.png"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            Description = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
-                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580226/chinh-300x300_yfjqj7.png"
-                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Order", b =>
@@ -420,104 +297,6 @@ namespace DP_Shop.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9938),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9939),
-                            Name = "Bánh Ép Huế Vị Thịt Nướng 40g",
-                            Price = 30000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-vi-thi-nuong-40g"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9952),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9953),
-                            Name = "Bánh Ép Huế Gói Snack Vị Tép 40g",
-                            Price = 35000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-goi-snack-vi-tep-40g"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CategoryId = 2,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9956),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9956),
-                            Name = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
-                            Price = 35000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-goi-snack-bbq-vi-thit-nuong-40g"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9959),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9960),
-                            Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
-                            Price = 50000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-hai-san-vi-tom-thit-65g"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9963),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9963),
-                            Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
-                            Price = 30000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-hai-san-vi-tom-thit-40g"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9966),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9967),
-                            Name = "Bánh ép Huế chay vị Sen Huế 65G",
-                            Price = 50000m,
-                            Quantity = 50,
-                            Slug = "banh-ep-hue-chay-vi-sen-hue-65g"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9971),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9971),
-                            Name = "Bánh ép Huế chay vị Nấm Hương 65G",
-                            Price = 50000m,
-                            Quantity = 20,
-                            Slug = "banh-ep-hue-chay-vi-nam-huong-65g"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 19, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9974),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 18, 12, 19, 24, 954, DateTimeKind.Local).AddTicks(9975),
-                            Name = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
-                            Price = 50000m,
-                            Quantity = 20,
-                            Slug = "banh-ep-hue-bbq-vi-thit-nuong-65g"
-                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.ProductImage", b =>
@@ -541,116 +320,6 @@ namespace DP_Shop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            ImageId = 1,
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 2,
-                            ImageId = 2,
-                            ProductId = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            ImageId = 3,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 4,
-                            ImageId = 4,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            ImageId = 5,
-                            ProductId = 2
-                        },
-                        new
-                        {
-                            Id = 6,
-                            ImageId = 6,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 7,
-                            ImageId = 7,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 8,
-                            ImageId = 8,
-                            ProductId = 3
-                        },
-                        new
-                        {
-                            Id = 9,
-                            ImageId = 9,
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 10,
-                            ImageId = 10,
-                            ProductId = 4
-                        },
-                        new
-                        {
-                            Id = 11,
-                            ImageId = 11,
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 12,
-                            ImageId = 12,
-                            ProductId = 5
-                        },
-                        new
-                        {
-                            Id = 13,
-                            ImageId = 13,
-                            ProductId = 6
-                        },
-                        new
-                        {
-                            Id = 14,
-                            ImageId = 14,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 15,
-                            ImageId = 15,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 16,
-                            ImageId = 16,
-                            ProductId = 7
-                        },
-                        new
-                        {
-                            Id = 17,
-                            ImageId = 17,
-                            ProductId = 8
-                        },
-                        new
-                        {
-                            Id = 18,
-                            ImageId = 18,
-                            ProductId = 8
-                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.UserAddress", b =>
