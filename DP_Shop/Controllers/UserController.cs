@@ -13,7 +13,7 @@ namespace DP_Shop.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private static IUserRespository _userRespository;
+        private readonly IUserRespository _userRespository;
 
         public UserController(IUserRespository userRespository)
         {
