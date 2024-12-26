@@ -38,7 +38,7 @@ namespace DP_Shop.Controllers
         }
 
         [HttpGet("list")]
-        public async Task<IActionResult> GetProducts([FromBody] QueryProducts query)
+        public async Task<IActionResult> GetProducts([FromQuery] QueryProducts query)
         {
             if (!ModelState.IsValid) 
             {
@@ -53,7 +53,7 @@ namespace DP_Shop.Controllers
         }
 
         [HttpGet("list/category/{id}")]
-        public async Task<IActionResult> GetProductByCategoryId([FromRoute] int id,[FromBody] QueryProducts query)
+        public async Task<IActionResult> GetProductByCategoryId([FromRoute] int id,[FromQuery] QueryProducts query)
         {
             if (!ModelState.IsValid)
             {
@@ -143,7 +143,7 @@ namespace DP_Shop.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet("admin/soft-deleted-list")]
-        public async Task<IActionResult> GetSoftDeletedList([FromBody] QueryProducts query)
+        public async Task<IActionResult> GetSoftDeletedList([FromQuery] QueryProducts query)
         {
             if (!ModelState.IsValid)
             {

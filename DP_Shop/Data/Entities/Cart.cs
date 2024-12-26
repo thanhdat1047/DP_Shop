@@ -11,9 +11,8 @@ namespace DP_Shop.Data.Entities
         public int Quantity { get; set; }
         public string UserId { get; set; } = string.Empty;  
         public int ProductId { get; set; }
-
-
         public ApplicationUser? User { get; set; }
         public Product? Product { get; set; }
+        public decimal TotalPrice => Product != null ? Product.Price * Quantity : 0;
     }
 }

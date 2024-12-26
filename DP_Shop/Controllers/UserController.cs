@@ -21,7 +21,7 @@ namespace DP_Shop.Controllers
         }
         [Authorize(Roles = "Admin")]
         [HttpGet("users")]
-        public async Task<IActionResult> GetUsers([FromBody] QueryUser query)
+        public async Task<IActionResult> GetUsers([FromQuery] QueryUser query)
         {
             if(!ModelState.IsValid)
             {
