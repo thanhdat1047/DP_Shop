@@ -19,7 +19,7 @@ namespace DP_Shop.Controllers
         }
         [Authorize(Roles ="Admin")]
         [HttpGet("list/admin")]
-        public async Task<IActionResult> GetImages([FromBody] QueryImages query)
+        public async Task<IActionResult> GetImages([FromQuery] QueryImages query)
         {
             if(!ModelState.IsValid)
             {

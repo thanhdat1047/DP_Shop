@@ -69,7 +69,7 @@ namespace DP_Shop.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetListItems([FromBody] QueryCart query)
+        public async Task<IActionResult> GetListItems([FromQuery] QueryCart query)
         {
             if (!ModelState.IsValid)
             {

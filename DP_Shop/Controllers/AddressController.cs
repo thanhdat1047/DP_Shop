@@ -120,7 +120,7 @@ namespace DP_Shop.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet("admin/")]
-        public async Task<IActionResult> GetAllAddress([FromBody] QueryAddress query)
+        public async Task<IActionResult> GetAllAddress([FromQuery] QueryAddress query)
         {
             if (!ModelState.IsValid)
             {
@@ -138,7 +138,7 @@ namespace DP_Shop.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<IActionResult> GetAddressesByUserId([FromBody] QueryAddress query)
+        public async Task<IActionResult> GetAddressesByUserId([FromQuery] QueryAddress query)
         {
             if (!ModelState.IsValid)
             {
