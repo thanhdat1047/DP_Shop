@@ -15,6 +15,16 @@ namespace DP_Shop.Mappers
                 PhoneNumber = applicationUser.PhoneNumber
             };
         }
+        public static UserProfile ToUserProfile(this ApplicationUser applicationUser)
+        {
+            return new UserProfile
+            {
+                Id = applicationUser.Id,
+                Username = applicationUser.UserName,
+                Email = applicationUser.Email,
+                PhoneNumber = applicationUser.PhoneNumber
+            };
+        }
         public static ApplicationUser ToAplicationUser(this UserDto userDto)
         {
             return new ApplicationUser

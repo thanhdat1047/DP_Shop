@@ -1,4 +1,6 @@
-﻿using DP_Shop.Data.Entities;
+﻿using DP_Shop.Data;
+using DP_Shop.Data.Entities;
+using DP_Shop.DTOs.Address;
 using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Users;
 using DP_Shop.Helpers.Query;
@@ -14,9 +16,11 @@ namespace DP_Shop.Respository
     {
 
         private readonly UserManager<ApplicationUser> _userManager;
-        public UserRespository(UserManager<ApplicationUser> userManager)
+        private readonly AppDbContext _dbContext;
+        public UserRespository(UserManager<ApplicationUser> userManager, AppDbContext dbContext)
         {
             _userManager = userManager;
+            _dbContext = dbContext; 
         }
 
         public async Task<Result<ApplicationUser>> DeleteAsync(string id)
@@ -37,38 +41,58 @@ namespace DP_Shop.Respository
 
         public async Task<ApplicationUser> GetUserById(string id)
         {
-            return await _userManager.FindByIdAsync(id);
+            var user = await _userManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return user;
         }
+
 
 
         public async Task<ApplicationUser> GetUserbyUsername(string username)
         {
-            return await _userManager.FindByNameAsync(username);
+            var user = await _userManager.FindByNameAsync(username);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+            return user;
         }
 
-        public async Task<Result<UserDto>> GetUserProfile(string id)
+        public async Task<Result<UserProfile>> GetUserProfile(string id)
         {
             try
             {
-                var user = await _userManager.FindByIdAsync(id);
+                var user = await _dbContext.Users
+                    .Include(u => u.UserAddresses) 
+                    .ThenInclude(au => au.Address)
+                    .FirstOrDefaultAsync(u => u.Id == id);
                 if (user == null)
                 {
-                    return new Result<UserDto>("User not found");
+                    return new Result<UserProfile>("User not found");
                 }
-                return new Result<UserDto>(user.ToUserDto());
+                var userDto = user.ToUserProfile();
+                userDto.Addresses = user.UserAddresses?
+                    .Where(ua => ua.Address != null)
+                    .Select(ua => ua.Address!.ToAddressModel())
+                    .ToList() ?? new List<AddressModel>();
+
+                return new Result<UserProfile>(userDto);
 
             }
             catch (Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<UserDto>(errorMessage);
+                return new Result<UserProfile>(errorMessage);
             }
         }
 
-        public async Task<List<UpdateUserRequestDto>> GetUsers(QueryUser query)
+        public async Task<List<UserResponse>> GetUsers(QueryUser query)
         {
             var users = _userManager.Users.AsQueryable();
-            if (!string.IsNullOrEmpty(query.UserName))
+            if (!string.IsNullOrWhiteSpace(query.UserName))
             {
                 users = users.Where(u => u.UserName.Contains(query.UserName));
             }
@@ -97,12 +121,13 @@ namespace DP_Shop.Respository
             var skip = (query.PageNumber - 1) * query.PageSize;
             var pagedUsers = await users.Skip(skip).Take(query.PageSize).ToListAsync();
 
-            var updateUserDto = new List<UpdateUserRequestDto>();
+            var updateUserDto = new List<UserResponse>();
             foreach (var user in pagedUsers)
             {
                 var roles = await _userManager.GetRolesAsync(user);
-                updateUserDto.Add(new UpdateUserRequestDto
+                updateUserDto.Add(new UserResponse
                 {
+                    Id = user.Id,   
                     Email = user.Email,
                     Username = user.UserName,
                     PhoneNumber = user.PhoneNumber,
