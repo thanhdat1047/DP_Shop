@@ -204,7 +204,22 @@ namespace DP_Shop.Data
                     Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580226/chinh-300x300_yfjqj7.png",
                     Description = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G"
                 }
+                
+                ,
+                new Image
+                {
+                    Id = 19,
+                    Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/Artboard-361-300x300_ie5h9h.png",
+                    Description = "Bánh truyền thống"
+                },
+                new Image
+                {
+                    Id = 20,
+                    Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/4-300x300_kkdq5f.jpg",
+                    Description = "Bánh hiện đại"
+                }
             );
+            
 
             // Seed Products
             modelBuilder.Entity<Product>().HasData(
@@ -303,6 +318,23 @@ namespace DP_Shop.Data
                     ExpiryDate = DateTime.Now.AddDays(30),
                     CategoryId = 1,
                     Slug = "banh-ep-hue-bbq-vi-thit-nuong-65g"
+                }
+            );
+
+            // Seed CategoryImages
+            modelBuilder.Entity<CategoryImage>().HasData
+            (
+                new CategoryImage
+                {
+                    Id = 1, 
+                    CategoryId =1, 
+                    ImageId = 19
+                },
+                new CategoryImage
+                {
+                    Id = 2,
+                    CategoryId =2,
+                    ImageId = 20   
                 }
             );
 
