@@ -3,32 +3,48 @@
   "WorkspaceRootPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\productscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\cartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\cartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iproductrespository.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iproductrespository.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\mappers\\cartmappers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\mappers\\cartmappers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\products\\updateproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\products\\updateproductrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\carts\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\carts\\cartdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\icartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\icartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\extensions\\applicationserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\extensions\\applicationserviceextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\entities\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\carts\\updatecartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\carts\\updatecartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\helpers\\query\\querycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\helpers\\query\\querycart.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\carts\\createcartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\carts\\createcartrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,97 +54,149 @@
       "DocumentGroups": [
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 9,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ProductsController.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\ProductsController.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\ProductsController.cs",
-              "RelativeToolTip": "DP_Shop\\Controllers\\ProductsController.cs",
-              "ViewState": "AQIAAEYAAAAAAAAAAAA7wFcAAAAkAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:24:24.494Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "IProductRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IProductRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IProductRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IProductRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Interface\\IProductRespository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABIAAAA",
+              "Title": "CartMappers.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\CartMappers.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Mappers\\CartMappers.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\CartMappers.cs",
+              "RelativeToolTip": "DP_Shop\\Mappers\\CartMappers.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAACEAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:24:10.524Z",
+              "WhenOpened": "2024-12-23T04:16:50.783Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "UpdateProductRequest.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Products\\UpdateProductRequest.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Products\\UpdateProductRequest.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Products\\UpdateProductRequest.cs",
-              "RelativeToolTip": "DP_Shop\\DTOs\\Products\\UpdateProductRequest.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "DocumentIndex": 8,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Program.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Program.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Program.cs",
+              "RelativeToolTip": "DP_Shop\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAeAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:22:11.243Z",
+              "WhenOpened": "2024-12-23T04:08:15.857Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "ProductRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Respository\\ProductRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Respository\\ProductRespository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAkAAAA",
+              "DocumentIndex": 9,
+              "Title": "QueryCart.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryCart.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Helpers\\Query\\QueryCart.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryCart.cs",
+              "RelativeToolTip": "DP_Shop\\Helpers\\Query\\QueryCart.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAaAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:20:42.395Z",
+              "WhenOpened": "2024-12-23T03:40:05.627Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "20241219051926_InitialSeedData.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs",
-              "RelativeToolTip": "DP_Shop\\Migrations\\20241219051926_InitialSeedData.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "DocumentIndex": 7,
+              "Title": "UpdateCartRequest.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\UpdateCartRequest.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Carts\\UpdateCartRequest.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\UpdateCartRequest.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Carts\\UpdateCartRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T05:19:26.224Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SeedData.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\SeedData.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Data\\SeedData.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\SeedData.cs",
-              "RelativeToolTip": "DP_Shop\\Data\\SeedData.cs",
-              "ViewState": "AQIAAAwBAAAAAAAAAAAAABwBAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-18T04:38:21.881Z",
+              "WhenOpened": "2024-12-23T03:33:40.076Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Data\\AppDbContext.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "DP_Shop\\Data\\AppDbContext.cs",
-              "ViewState": "AQIAAAcAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\Product.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Data\\Entities\\Product.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\Product.cs",
+              "RelativeToolTip": "DP_Shop\\Data\\Entities\\Product.cs",
+              "ViewState": "AQIAABwAAAAAAAAAAADwvwAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-19T04:38:20.123Z",
+              "WhenOpened": "2024-12-23T03:05:11.205Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CartDto.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\CartDto.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Carts\\CartDto.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\CartDto.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Carts\\CartDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T03:01:17.099Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationServiceExtensions.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "RelativeToolTip": "DP_Shop\\Extensions\\ApplicationServiceExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAABAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T02:56:13.432Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "CartsController.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CartsController.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\CartsController.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CartsController.cs",
+              "RelativeToolTip": "DP_Shop\\Controllers\\CartsController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAowA4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T02:52:35.476Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ICartRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\ICartRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Interface\\ICartRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\ICartRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Interface\\ICartRespository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAABYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T02:26:22.493Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "CartRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CartRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\CartRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CartRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\CartRespository.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAYwDUAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T02:30:46.342Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CreateCartRequest.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\CreateCartRequest.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Carts\\CreateCartRequest.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Carts\\CreateCartRequest.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Carts\\CreateCartRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAqAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-23T02:23:42.453Z",
               "EditorCaption": ""
             }
           ]

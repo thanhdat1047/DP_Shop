@@ -197,7 +197,7 @@ namespace DP_Shop.Respository
             var pageAddress = await addresses.Skip(skip).Take(query.PageSize).ToListAsync();
 
             var listAddressDto = new List<AddressModelResponse>(); 
-            foreach(var address in addresses)
+            foreach(var address in pageAddress)
             {
                 listAddressDto.Add(address.ToResponseAddressModel());   
             }
