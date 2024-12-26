@@ -1,10 +1,13 @@
 ﻿using DP_Shop.Data;
+using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Address;
 using DP_Shop.DTOs.Categories;
+using DP_Shop.DTOs.Images;
 using DP_Shop.Interface;
 using DP_Shop.Mappers;
 using DP_Shop.Models.Result;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 
 namespace DP_Shop.Respository
 {
@@ -18,16 +21,37 @@ namespace DP_Shop.Respository
 
         public async Task<Result<CategoryDto>> CreateAsync(CreateCategoryRequest createCategory)
         {
+            IDbContextTransaction transaction = null;
             try
             {
+                transaction = await _context.Database.BeginTransactionAsync();
+
                 var newCategory = createCategory.ToCategory();
                 await _context.Categories.AddAsync(newCategory);
+
+                var image = createCategory.ImageDto.ToImage();
+                await _context.Images.AddAsync(image);
                 await _context.SaveChangesAsync();
 
+                var categoryImage = new CategoryImage
+                {
+                    CategoryId = newCategory.Id,
+                    ImageId = image.Id,
+                };
+
+                await _context.CategoryImages.AddAsync(categoryImage);
+                await _context.SaveChangesAsync();
+
+                // Commit
+                await transaction.CommitAsync();
                 return new Result<CategoryDto>(newCategory.ToCategoryDto());
             }
             catch (Exception ex) 
             {
+                if (transaction != null)
+                {
+                    await transaction.RollbackAsync();
+                }
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<CategoryDto>(errorMessage);
             }
@@ -35,22 +59,42 @@ namespace DP_Shop.Respository
 
         
 
-        public async Task<Result<List<CategoryDto>>> GetAll()
+        public async Task<Result<List<CategoryResponse>>> GetAll()
         {
             try
             {
                 var categories = await _context.Categories.Where(c => c.DeletedAt == null).ToListAsync();
-                var categoriesSto = categories.Select(c => c.ToCategoryDto()).ToList();
-                return new Result<List<CategoryDto>>(categoriesSto);
+                
+                var listCategoryResponse = new List<CategoryResponse>();
+                foreach (var category in categories) {
+                    var imageDto = await _context.CategoryImages
+                        .Where(ci => ci.CategoryId == category.Id)
+                        .Select(ci => new ImageDto
+                        {
+                            Id = ci.Image!.Id,
+                            Url = ci.Image.Url,
+                            Description = ci.Image.Description
+                        })
+                        .FirstOrDefaultAsync();
+                    listCategoryResponse.Add(new CategoryResponse
+                    {
+                        CategoryDto = category.ToCategoryDto(),
+                        ImageDto = imageDto,
+                    });
+                }
+                
+
+
+                return new Result<List<CategoryResponse>>(listCategoryResponse);
             }
             catch(Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<List<CategoryDto>>(errorMessage);
+                return new Result<List<CategoryResponse>>(errorMessage);
             }
         }
 
-        public async Task<Result<CategoryDto>> GetById(int id)
+        public async Task<Result<CategoryResponse>> GetById(int id)
         {
             try
             {
@@ -59,15 +103,30 @@ namespace DP_Shop.Respository
                     .FirstOrDefaultAsync(c => c.Id == id); 
                 if(category == null)
                 {
-                    return new Result<CategoryDto>("Category not found");
+                    return new Result<CategoryResponse>("Category not found");
                 }
-                return new Result<CategoryDto>(category.ToCategoryDto());
+
+                var imageDto = await _context.CategoryImages
+                       .Where(ci => ci.CategoryId == category.Id)
+                       .Select(ci => new ImageDto
+                       {
+                           Id = ci.Image!.Id,
+                           Url = ci.Image.Url,
+                           Description = ci.Image.Description
+                       })
+                       .FirstOrDefaultAsync();
+                var response  = new CategoryResponse
+                {
+                    CategoryDto = category.ToCategoryDto(),
+                    ImageDto = imageDto,
+                };
+                return new Result<CategoryResponse>(response);
 
             }
             catch(Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<CategoryDto>(errorMessage);
+                return new Result<CategoryResponse>(errorMessage);
             }
         }
 
@@ -163,19 +222,38 @@ namespace DP_Shop.Respository
                 return new Result<bool>(errorMessage);
             }
         }
-        public async Task<Result<List<CategoryDto>>> GetSoftDeletedList()
+        public async Task<Result<List<CategoryResponse>>> GetSoftDeletedList()
         {
             try
             {
                 var categories = await _context.Categories.Where(c => c.DeletedAt != null)
                     .ToListAsync();
-                var categoriesSto = categories.Select(c => c.ToCategoryDto()).ToList();
-                return new Result<List<CategoryDto>>(categoriesSto);
+
+                var listCategoryResponse = new List<CategoryResponse>();
+                foreach (var category in categories)
+                {
+                    var imageDto = await _context.CategoryImages
+                        .Where(ci => ci.CategoryId == category.Id)
+                        .Select(ci => new ImageDto
+                        {
+                            Id = ci.Image!.Id,
+                            Url = ci.Image.Url,
+                            Description = ci.Image.Description
+                        })
+                        .FirstOrDefaultAsync();
+                    listCategoryResponse.Add(new CategoryResponse
+                    {
+                        CategoryDto = category.ToCategoryDto(),
+                        ImageDto = imageDto,
+                    });
+                }
+
+                return new Result<List<CategoryResponse>>(listCategoryResponse);
             }
             catch (Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<List<CategoryDto>>(errorMessage);
+                return new Result<List<CategoryResponse>>(errorMessage);
             }
         }
 

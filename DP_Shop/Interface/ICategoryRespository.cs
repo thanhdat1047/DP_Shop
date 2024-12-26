@@ -6,9 +6,9 @@ namespace DP_Shop.Interface
 {
     public interface ICategoryRespository
     {
-        Task<Result<List<CategoryDto>>> GetAll();
-        Task<Result<List<CategoryDto>>> GetSoftDeletedList();
-        Task<Result<CategoryDto>> GetById(int id);
+        Task<Result<List<CategoryResponse>>> GetAll();
+        Task<Result<List<CategoryResponse>>> GetSoftDeletedList();
+        Task<Result<CategoryResponse>> GetById(int id);
         Task<Result<CategoryDto>> CreateAsync(CreateCategoryRequest createCategory);
         Task<Result<CategoryDto>> UpdateAsync(int id, CategoryDto categoryDto);
         Task<Result<Boolean>> DeleteAsync(int id);

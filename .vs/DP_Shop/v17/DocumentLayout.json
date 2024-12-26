@@ -3,48 +3,48 @@
   "WorkspaceRootPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\userrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\userrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\entities\\applicationuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\categoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\categoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\categories\\categoryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\categories\\categoryresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\helpers\\query\\queryuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\helpers\\query\\queryuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\icategoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\icategoryrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\usercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\productrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\users\\updateuserrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\users\\updateuserrequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\products\\productresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\products\\productresponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\cartscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\categories\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\categories\\categorydto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\mappers\\usermappers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\mappers\\usermappers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\entities\\categoryimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\entities\\categoryimage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\users\\userdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\seeddata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iuserrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iuserrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\categories\\createcategoryrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\categories\\createcategoryrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\users\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\users\\userprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,151 +54,155 @@
       "DocumentGroups": [
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "IUserRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IUserRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IUserRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IUserRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Interface\\IUserRespository.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAABMAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:46:28.328Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "UserRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\UserRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Respository\\UserRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\UserRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Respository\\UserRespository.cs",
-              "ViewState": "AQIAAEEAAAAAAAAAAAAlwEgAAAARAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:41:10.192Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "20241226091656_UpdateUserTable.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs",
-              "RelativeToolTip": "DP_Shop\\Migrations\\20241226091656_UpdateUserTable.cs",
+              "Title": "20241226121314_AddTableCategoryImage.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs",
+              "RelativeToolTip": "DP_Shop\\Migrations\\20241226121314_AddTableCategoryImage.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T09:16:56.563Z",
+              "WhenOpened": "2024-12-26T12:13:14.626Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "QueryUser.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryUser.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Helpers\\Query\\QueryUser.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Helpers\\Query\\QueryUser.cs",
-              "RelativeToolTip": "DP_Shop\\Helpers\\Query\\QueryUser.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAMAAAAFAAAA",
+              "Title": "ICategoryRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\ICategoryRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Interface\\ICategoryRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\ICategoryRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Interface\\ICategoryRespository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAApAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T09:12:21.415Z",
+              "WhenOpened": "2024-12-26T12:12:26.802Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CartsController.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CartsController.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\CartsController.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\CartsController.cs",
-              "RelativeToolTip": "DP_Shop\\Controllers\\CartsController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAATAAAA",
+              "DocumentIndex": 2,
+              "Title": "CategoryResponse.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CategoryResponse.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Categories\\CategoryResponse.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CategoryResponse.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Categories\\CategoryResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T09:08:00.215Z",
+              "WhenOpened": "2024-12-26T11:56:02.508Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "ApplicationUser.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\ApplicationUser.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Data\\Entities\\ApplicationUser.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\ApplicationUser.cs",
-              "RelativeToolTip": "DP_Shop\\Data\\Entities\\ApplicationUser.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAnAAAA",
+              "Title": "CategoryRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CategoryRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\CategoryRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CategoryRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\CategoryRespository.cs",
+              "ViewState": "AQIAAMEAAAAAAAAAAAAYwM4AAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T09:04:55.044Z",
+              "WhenOpened": "2024-12-26T11:45:58.801Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "UserDto.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserDto.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Users\\UserDto.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserDto.cs",
-              "RelativeToolTip": "DP_Shop\\DTOs\\Users\\UserDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwAcAAAAWAAAA",
+              "Title": "SeedData.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\SeedData.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Data\\SeedData.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\SeedData.cs",
+              "RelativeToolTip": "DP_Shop\\Data\\SeedData.cs",
+              "ViewState": "AQIAANIAAAAAAAAAAAAAAEoBAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:54:06.868Z",
+              "WhenOpened": "2024-12-26T11:33:15.575Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "UserProfile.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserProfile.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Users\\UserProfile.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserProfile.cs",
-              "RelativeToolTip": "DP_Shop\\DTOs\\Users\\UserProfile.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAYAAAA2AAAA",
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Data\\AppDbContext.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "DP_Shop\\Data\\AppDbContext.cs",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAqwBAAAAA+AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:53:42.64Z",
+              "WhenOpened": "2024-12-26T11:32:43.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "CategoryDto.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CategoryDto.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Categories\\CategoryDto.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CategoryDto.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Categories\\CategoryDto.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T11:53:11.152Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "UserMappers.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\UserMappers.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Mappers\\UserMappers.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\UserMappers.cs",
-              "RelativeToolTip": "DP_Shop\\Mappers\\UserMappers.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAACcAAAAAAAAA",
+              "Title": "CategoryImage.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\CategoryImage.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Data\\Entities\\CategoryImage.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\CategoryImage.cs",
+              "RelativeToolTip": "DP_Shop\\Data\\Entities\\CategoryImage.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:44:54.721Z",
+              "WhenOpened": "2024-12-26T11:31:48.455Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 184,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ProductResponse.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Products\\ProductResponse.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Products\\ProductResponse.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Products\\ProductResponse.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Products\\ProductResponse.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAA+AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-26T11:54:15.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "UpdateUserRequestDto.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UpdateUserRequestDto.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Users\\UpdateUserRequestDto.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UpdateUserRequestDto.cs",
-              "RelativeToolTip": "DP_Shop\\DTOs\\Users\\UpdateUserRequestDto.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
+              "DocumentIndex": 9,
+              "Title": "CreateCategoryRequest.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CreateCategoryRequest.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Categories\\CreateCategoryRequest.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Categories\\CreateCategoryRequest.cs",
+              "RelativeToolTip": "DP_Shop\\DTOs\\Categories\\CreateCategoryRequest.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:41:37.202Z",
+              "WhenOpened": "2024-12-26T11:46:54.714Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
-              "Title": "UserController.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\UserController.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\UserController.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\UserController.cs",
-              "RelativeToolTip": "DP_Shop\\Controllers\\UserController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAdAAAA",
+              "Title": "ProductRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\ProductRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\ProductRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\ProductRespository.cs",
+              "ViewState": "AQIAAK4AAAAAAAAAAAAuwE0BAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-26T08:30:41.221Z",
+              "WhenOpened": "2024-12-26T11:45:56.791Z",
               "EditorCaption": ""
             }
           ]

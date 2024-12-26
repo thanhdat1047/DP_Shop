@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DP_Shop.DTOs.Images;
+using System.ComponentModel.DataAnnotations;
 
 namespace DP_Shop.DTOs.Categories
 {
@@ -13,5 +14,6 @@ namespace DP_Shop.DTOs.Categories
         [Required(ErrorMessage = "Description is required.")]
         [StringLength(500, MinimumLength = 10, ErrorMessage = "Description must be between 10 and 500 characters.")]
         public string Description { get; set; } = string.Empty;
+
     }
 }
