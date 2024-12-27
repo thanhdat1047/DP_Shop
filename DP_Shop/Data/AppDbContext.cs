@@ -25,6 +25,14 @@ namespace DP_Shop.Data
         {
             base.OnModelCreating(builder);
 
+            builder.Entity<Address>(entity =>
+            {
+                entity.HasKey(e => e.Id); 
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd() 
+                    .IsRequired(); 
+            });
+
             builder.Entity<UserAddress>()
                 .HasOne(ua => ua.User)
                 .WithMany(u => u.UserAddresses)

@@ -34,39 +34,49 @@ namespace DP_Shop.Respository
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();
-
+                
                 var newAddress = address.ToAddress();
-
-
 
                 await _dbContext.Addresses.AddAsync(newAddress);
                 await _dbContext.SaveChangesAsync();
 
-                var newAddressId = newAddress.Id;
+                // var newAddressId = newAddress.Id;
 
-                if (newAddressId == 0)
+                /* if (newAddressId <= 0)
+                 {
+                     await transaction.RollbackAsync();
+                     return new Result<AddressModel>("Address creation failed. Invalid address ID.");
+                 }*/
+                var existingAddress = await _dbContext.Addresses.FindAsync(newAddress.Id);
+                if (existingAddress == null)
                 {
-                    return new Result<AddressModel>("Address creation failed. Invalid address ID.");
+                    await transaction.RollbackAsync();
+                    return new Result<AddressModel>("Address creation failed.");
                 }
 
                 var userExists = await _dbContext.Users.AnyAsync(u => u.Id == userId);
                 if (!userExists)
                 {
+                    await transaction.RollbackAsync();
                     return new Result<AddressModel>("User not found.");
                 }
-                if(isDefault)
+
+                if (isDefault)
                 {
-                    var addressDefault = await _dbContext.UserAddresses.FirstOrDefaultAsync(ua => ua.UserId == userId && isDefault == true);
-                    if (addressDefault != null)
+                    var currentDefaultAddress = await _dbContext.UserAddresses
+                        .FirstOrDefaultAsync(ua => ua.UserId == userId && ua.IsDefault);
+
+                    if (currentDefaultAddress != null)
                     {
-                        addressDefault.IsDefault = false;
-                        await _dbContext.SaveChangesAsync();    
+                        currentDefaultAddress.IsDefault = false;
+                        _dbContext.UserAddresses.Update(currentDefaultAddress);
+                        await _dbContext.SaveChangesAsync();
                     }
                 }
-               
+
                 var userAddress = new UserAddress
                 {
-                    AddressId = newAddressId,
+                    AddressId = existingAddress.Id,
                     IsDefault = isDefault,
                     UserId = userId,
                 };
@@ -87,6 +97,13 @@ namespace DP_Shop.Respository
 
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<AddressModel>(errorMessage);
+            }
+            finally
+            {
+                if (transaction != null)
+                {
+                    await transaction.DisposeAsync();
+                }
             }
         }
 
@@ -219,7 +236,9 @@ namespace DP_Shop.Respository
                     return new Result<List<UserAddressResponse>>("No addresses found for this user");
                 }
                 var addressModel = userAddresses
-                    .Select(ua => ua.Address.ToUserAddressResponse(ua.IsDefault)).AsQueryable();
+                    .Where(ua => ua.Address != null)
+                    .Select(ua => ua.Address!.ToUserAddressResponse(ua.IsDefault))
+                    .AsQueryable();
 
                 if (!string.IsNullOrEmpty(query.City))
                 {
