@@ -76,10 +76,16 @@ namespace DP_Shop.Respository
                             Description = ci.Image.Description
                         })
                         .FirstOrDefaultAsync();
+
+                    var productCount = await _context.Products
+                        .Where(p => p.CategoryId == category.Id)
+                        .CountAsync();
+
                     listCategoryResponse.Add(new CategoryResponse
                     {
                         CategoryDto = category.ToCategoryDto(),
                         ImageDto = imageDto,
+                        ProductCount = productCount 
                     });
                 }
                 
@@ -115,10 +121,14 @@ namespace DP_Shop.Respository
                            Description = ci.Image.Description
                        })
                        .FirstOrDefaultAsync();
+                var productCount = await _context.Products
+                       .Where(p => p.CategoryId == category.Id)
+                       .CountAsync();
                 var response  = new CategoryResponse
                 {
                     CategoryDto = category.ToCategoryDto(),
                     ImageDto = imageDto,
+                    ProductCount = productCount
                 };
                 return new Result<CategoryResponse>(response);
 
@@ -241,10 +251,15 @@ namespace DP_Shop.Respository
                             Description = ci.Image.Description
                         })
                         .FirstOrDefaultAsync();
+                    var productCount = await _context.Products
+                       .Where(p => p.CategoryId == category.Id)
+                       .CountAsync();
+
                     listCategoryResponse.Add(new CategoryResponse
                     {
                         CategoryDto = category.ToCategoryDto(),
                         ImageDto = imageDto,
+                        ProductCount = productCount 
                     });
                 }
 
