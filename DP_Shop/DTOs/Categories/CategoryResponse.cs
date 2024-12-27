@@ -5,7 +5,8 @@ namespace DP_Shop.DTOs.Categories
     public class CategoryResponse
     {
         public CategoryDto? CategoryDto { get; set; }   
-        public required ImageDto? ImageDto { get; set; }   
+        public required ImageDto? ImageDto { get; set; }
+        public int ProductCount { get; set; } = 0;  
 
     }
 }
