@@ -44,7 +44,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<bool>> AssignRole(UserRole userRole)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();

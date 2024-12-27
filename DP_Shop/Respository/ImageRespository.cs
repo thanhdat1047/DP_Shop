@@ -22,7 +22,7 @@ namespace DP_Shop.Respository
         public async Task<Result<ImageDto>> AddImage(ImageRequest imageRequest, int productId)
         {
 
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 var product = await _dbContext.Products.SingleOrDefaultAsync(p => p.Id == productId);
@@ -63,7 +63,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<bool>> DeleteImageOfProduct(ImageDto image, int productId)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 var productExists = await _dbContext.Products.AnyAsync(p => p.Id == productId);

@@ -23,7 +23,7 @@ namespace DP_Shop.Respository
         // them san pham
         public async Task<Result<ProductDtoResponse>> CreateAsync(ProductWithImagesRequest model)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();
@@ -256,7 +256,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<ProductDto>> UpdateAsync(int id, UpdateProductRequest model)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 
@@ -292,6 +292,7 @@ namespace DP_Shop.Respository
                 existingProduct.Name = model.Name;
                 existingProduct.Description = model.Description;
                 existingProduct.Price = model.Price;
+                existingProduct.Quantity = model.Quantity;
                 existingProduct.ExpiryDate = model.ExpiryDate;
                 existingProduct.CategoryId = model.CategoryId;
                 existingProduct.UpdatedAt = DateTime.Now;
