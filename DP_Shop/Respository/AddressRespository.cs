@@ -30,7 +30,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<AddressModel>> CreateAsync(AddressModel address, string userId, bool isDefault)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();
@@ -260,7 +260,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<AddressModel>> UpdateAsync(int id, UpdateAddressRequest model, string userId)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();

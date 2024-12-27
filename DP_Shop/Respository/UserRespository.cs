@@ -94,7 +94,7 @@ namespace DP_Shop.Respository
             var users = _userManager.Users.AsQueryable();
             if (!string.IsNullOrWhiteSpace(query.UserName))
             {
-                users = users.Where(u => u.UserName.Contains(query.UserName));
+                users = users.Where(u => u.UserName!.Contains(query.UserName));
             }
 
             if (!string.IsNullOrEmpty(query.SortBy))

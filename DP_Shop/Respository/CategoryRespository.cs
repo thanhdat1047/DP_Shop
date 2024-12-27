@@ -21,7 +21,7 @@ namespace DP_Shop.Respository
 
         public async Task<Result<CategoryDto>> CreateAsync(CreateCategoryRequest createCategory)
         {
-            IDbContextTransaction transaction = null;
+            IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _context.Database.BeginTransactionAsync();
