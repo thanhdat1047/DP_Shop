@@ -27,12 +27,12 @@ namespace DP_Shop.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var users = await _userRespository.GetUsers(query);
-            if(users != null)
+            var result = await _userRespository.GetUsers(query);
+            if(result.Succeeded)
             {
-                return Ok(users);
+                return Ok(result.Data);
             }
-            return NotFound();  
+            return NotFound(result.ErrorMessage);  
         }
 
         [Authorize(Roles = "Admin")]
@@ -47,6 +47,27 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpPatch("{id}")]
+        public async Task<IActionResult> ChangePassword([FromRoute] string id, [FromBody] ChangePassword changePassword)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var userID = User.FindFirst("userId");
+            if (userID == null || id != userID.Value)
+            {
+                return NotFound("UserId isn't valid");
+            }
+            var result = await _userRespository.ChangePassword(userID.Value, changePassword.OldPassword, changePassword.NewPassword);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data); 
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
         [Authorize]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserByUserID([FromRoute] string id)
@@ -55,12 +76,12 @@ namespace DP_Shop.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var user = await _userRespository.GetUserById(id);
-            if (user == null)
+            var result = await _userRespository.GetUserById(id);
+            if (result.Succeeded)
             {
-                return NotFound();  
+                return Ok(result.Data); 
             }
-            return Ok(user.ToUserDto()); 
+            return NotFound(result.ErrorMessage);
 
         }
 
