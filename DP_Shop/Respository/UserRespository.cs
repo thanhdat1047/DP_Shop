@@ -153,7 +153,7 @@ namespace DP_Shop.Respository
             return user;
         }*/
 
-        public async Task<Result<UserProfile>> GetUserProfile(string id)
+        public async Task<Result<UserResponse>> GetUserProfile(string id)
         {
             try
             {
@@ -163,21 +163,26 @@ namespace DP_Shop.Respository
                     .FirstOrDefaultAsync(u => u.Id == id);
                 if (user == null)
                 {
-                    return new Result<UserProfile>("User not found");
+                    return new Result<UserResponse>("User not found");
                 }
-                var userDto = user.ToUserProfile();
+
+                var roles = await _userManager.GetRolesAsync(user);
+                var userDto = user.ToUserResponse();
+
+                userDto.Roles = roles.ToList();
+
                 userDto.Addresses = user.UserAddresses?
                     .Where(ua => ua.Address != null)
                     .Select(ua => ua.Address!.ToAddressModel())
                     .ToList() ?? new List<AddressModel>();
 
-                return new Result<UserProfile>(userDto);
+                return new Result<UserResponse>(userDto);
 
             }
             catch (Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<UserProfile>(errorMessage);
+                return new Result<UserResponse>(errorMessage);
             }
         }
 

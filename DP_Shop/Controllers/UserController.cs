@@ -48,7 +48,7 @@ namespace DP_Shop.Controllers
         }
 
         [Authorize(Roles = "Admin")]
-        [HttpPatch("{id}")]
+        [HttpPatch("change-password/{id}")]
         public async Task<IActionResult> ChangePassword([FromRoute] string id, [FromBody] ChangePassword changePassword)
         {
             if (!ModelState.IsValid)
