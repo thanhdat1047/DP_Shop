@@ -24,6 +24,8 @@ namespace DP_Shop.Data
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+            
+            
 
             builder.Entity<Address>(entity =>
             {
@@ -38,6 +40,11 @@ namespace DP_Shop.Data
                 .WithMany(u => u.UserAddresses)
                 .HasForeignKey(ua => ua.UserId);
 
+            /*builder.Entity<Order>(e => {
+                e.Property(o => o.Status)
+                .HasConversion<string>()
+                .IsRequired();
+            });*/
             builder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
