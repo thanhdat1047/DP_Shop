@@ -19,6 +19,8 @@ namespace DP_Shop.Extensions
             services.AddScoped<IProductRespository, ProductRespository>();
             services.AddScoped<IImageRespository, ImageRespository>();  
             services.AddScoped<ICartRespository, CartRespository>();
+            services.AddScoped<IOrderRespository, OrderRespository>();
+            services.AddScoped<IOrderProductRespository, OrderProductRespository>();
 
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
