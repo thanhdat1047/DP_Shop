@@ -69,7 +69,7 @@ namespace DP_Shop.Controllers
 
         [Authorize]
         [HttpPatch("{orderId}")]
-        public async Task<IActionResult> ChangeOrderStatus([FromRoute] int orderId,[FromQuery] OrderStatus status)
+        public async Task<IActionResult> ChangeOrderStatus([FromRoute] int orderId,[FromBody] ChangeStateRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -82,7 +82,7 @@ namespace DP_Shop.Controllers
                 return NotFound("UserId isn't valid");
             }
 
-            var result = await _orderRespository.ChangeOrderStatus(userID.Value, orderId, status);
+            var result = await _orderRespository.ChangeOrderStatus(userID.Value, orderId, request.status);
             if (result.Succeeded)
             {
                 return Ok(result.Data);

@@ -223,10 +223,6 @@ namespace DP_Shop.Respository
                         .ThenInclude(op => op.Product)
                     .ToListAsync();
 
-                /*if (!orders.Any())
-                {
-                    return new Result<List<OrderResponse>>(null);
-                }*/
 
                 var orderResponses = orders.Select(o => new OrderResponse
                 {
