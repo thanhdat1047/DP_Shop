@@ -1,4 +1,5 @@
 ﻿using DP_Shop.Data;
+using DP_Shop.DTOs.Images;
 using DP_Shop.DTOs.OrderProduct;
 using DP_Shop.DTOs.Orders;
 using DP_Shop.DTOs.Products;
@@ -22,6 +23,7 @@ namespace DP_Shop.Respository
             {
                 var orderProduct = await _context.OrderProducts
                     .Include(o =>o.Product)
+                    .ThenInclude(p => p.ProductImages)
                     .FirstOrDefaultAsync(o => o.Id == id);
                 if (orderProduct == null)
                 {
@@ -33,7 +35,16 @@ namespace DP_Shop.Respository
                     Id = orderProduct.Id,
                     Quantity = orderProduct.Quantity,
                     OrderId = orderProduct.OrderId,
-                    Product = orderProduct.Product != null ? orderProduct.Product.ToProductDtoResponse() : new ProductDtoResponse()
+                    Product = orderProduct.Product != null ? orderProduct.Product.ToProductDtoResponse() : new ProductDtoResponse(),
+                    ListImage = orderProduct.Product != null && orderProduct.Product.ProductImages != null
+                    ? orderProduct.Product.ProductImages
+                        .Where(pi => pi.Image != null)
+                        .Select(pi => new ImageDto
+                        {
+                            Id = pi.Image!.Id,
+                            Url = pi.Image.Url
+                        }).ToList()
+                    : new List<ImageDto>()
 
                 };
 

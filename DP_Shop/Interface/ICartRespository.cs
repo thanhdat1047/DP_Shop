@@ -10,6 +10,6 @@ namespace DP_Shop.Interface
         Task<Result<CartDto>> AddItemToCart(string userId, CreateCartRequest cartRequest);   
         Task<Result<Boolean>> RemoveItemFromCart(string userId, int cartId);
         Task<Result<CartDto>> UpdateItemInCart(string userId, UpdateCartRequest cartRequest);
-        Task <Result<List<CartDto>>> GetListProductInCart(string userId, QueryCart query);
+        Task <Result<List<CartResponse>>> GetListProductInCart(string userId, QueryCart query);
     }
 }
