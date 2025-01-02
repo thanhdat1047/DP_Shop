@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http.HttpResults;
 using System.Collections.Generic;
 using DP_Shop.Helpers.Query;
 using DP_Shop.DTOs.Address;
+using DP_Shop.DTOs.Images;
 
 namespace DP_Shop.Respository
 {
@@ -64,26 +65,65 @@ namespace DP_Shop.Respository
 
         }
 
-        public async Task<Result<List<CartDto>>> GetListProductInCart(string userId, QueryCart query)
+        public async Task<Result<List<CartResponse>>> GetListProductInCart(string userId, QueryCart query)
         {
             try
             {
-                var cartItems = await _dbContext.Carts
+                /*var cartItems = await _dbContext.Carts
                     .Where(c => c.UserId == userId)
                     .Include(c => c.Product)
                     .OrderBy(c => c.Id)
                     .Skip((query.PageNumber - 1) * query.PageSize)
                     .Take(query.PageSize)
                     .Select(c => c.ToCartDto())
-                    .ToListAsync();
-                
-                return new Result<List<CartDto>>(cartItems);
+                    .ToListAsync();*/
+
+
+                var cartItems = await _dbContext.Carts
+                    .Where(c => c.UserId == userId)
+                    .Include(c => c.Product)
+                        .ThenInclude(p => p.ProductImages)
+                    .Include(c => c.Product)
+                        .ThenInclude(p => p.Category)
+                    .OrderBy(c => c.Id)
+                    .Skip((query.PageNumber - 1) * query.PageSize)
+                    .Take(query.PageSize)
+                    .Select(c => new CartResponse
+                    {
+                        Id = c.Id,
+                        Quantity = c.Quantity,
+                        UserId = c.UserId,
+                        ProductId = c.ProductId,
+                        Product = c.Product != null ? new CartProduct
+                        {
+                            Id = c.Product.Id,
+                            Name = c.Product.Name,
+                            Price = c.Product.Price,
+                            Description = c.Product.Description
+                        } : null,
+                        Total = c.TotalPrice,
+                        CategoryName = c.Product != null && c.Product.Category != null
+                            ? c.Product.Category.Name
+                            : string.Empty,
+                        ListImage = c.Product != null && c.Product.ProductImages != null
+                        ? c.Product.ProductImages
+                            .Where(pi => pi.Image != null)
+                            .Select(pi => new ImageDto
+                            {
+                                Id = pi.Image!.Id,
+                                Url = pi.Image.Url
+                            }).ToList()
+                        : new List<ImageDto>()
+                    }).ToListAsync();
+
+
+                return new Result<List<CartResponse>>(cartItems);
 
             }
             catch (Exception ex) 
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new  Result<List<CartDto>> (errorMessage);
+                return new  Result<List<CartResponse>> (errorMessage);
             }
         }
 
