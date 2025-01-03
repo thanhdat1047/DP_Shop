@@ -44,6 +44,7 @@ namespace DP_Shop.Respository
                 // Tao product
                 var newProduct = model.Product.ToProduct();
 
+                newProduct.SaveDescriptionToFile();
                 newProduct.GenerateSlug();
                 var exestingProduct = await _dbContext.Products
                     .FirstOrDefaultAsync(p => p.Slug == newProduct.Slug);
@@ -290,12 +291,17 @@ namespace DP_Shop.Respository
                 // Cap nhat du lieu
 
                 existingProduct.Name = model.Name;
-                existingProduct.Description = model.Description;
                 existingProduct.Price = model.Price;
                 existingProduct.Quantity = model.Quantity;
                 existingProduct.ExpiryDate = model.ExpiryDate;
                 existingProduct.CategoryId = model.CategoryId;
                 existingProduct.UpdatedAt = DateTime.Now;
+
+
+                if (!existingProduct.UpdateDescriptionFile(model.Description, existingProduct.Description))
+                {
+                    return new Result<ProductDto>("Description file not found.");
+                }
 
                 if(existingProduct.Name != model.Name)
                 {
@@ -303,6 +309,7 @@ namespace DP_Shop.Respository
 
                     var duplicateSlug = await _dbContext.Products
                         .FirstOrDefaultAsync(p => p.Slug == existingProduct.Slug && p.Id != id);
+
                     if(duplicateSlug != null)
                     {
                         return new Result<ProductDto>("The generated slug already exists. Please use a different name. ");

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DP_Shop.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20241215083853_CreateTableImage")]
-    partial class CreateTableImage
+    [Migration("20250103033902_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -172,6 +172,59 @@ namespace DP_Shop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6865),
+                            Description = "Sản phẩm truyền thống",
+                            Name = "Sản phẩm truyền thống"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6867),
+                            Description = "Sản phẩm hiện đại",
+                            Name = "Sản phẩm hiện đại"
+                        });
+                });
+
+            modelBuilder.Entity("DP_Shop.Data.Entities.CategoryImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("ImageId");
+
+                    b.ToTable("CategoryImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            ImageId = 19
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            ImageId = 20
+                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Image", b =>
@@ -192,6 +245,128 @@ namespace DP_Shop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Images");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Bánh Ép Huế Vị Thịt Nướng 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734498100/chinh-300x300_tfdduo.png"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "Bánh Ép Huế Vị Thịt Nướng 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734498099/Artboard-391-300x300_o3uacb.png"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579317/2-300x300_rpepfq.jpg"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579317/3_ciytdq.jpg"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Bánh Ép Huế Gói Snack Vị Tép 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579318/Thiet-ke-chua-co-ten_w83xbi.jpg"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/5-300x300_xkcm3z.jpg"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/4-300x300_kkdq5f.jpg"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/1-300x300_yn7thr.jpg"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579658/Artboard-351-300x300_ceyyrk.png"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579658/chinh-2-300x300_cf7cqt.png"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/Artboard-361-300x300_ie5h9h.png"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Description = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/chinh-3-300x300_j5x0wl.png"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            Description = "Bánh ép Huế chay vị Sen Huế 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580057/Sen-768x576_mth6jv.png"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580131/9-300x300_rzn0md.jpg"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580132/12-300x300_mljbgd.jpg"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            Description = "Bánh ép Huế chay vị Nấm Hương 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580133/Nam-1-300x300_vfz61t.png"
+                        },
+                        new
+                        {
+                            Id = 17,
+                            Description = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580226/Artboard-391-300x300_jvirsd.png"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            Description = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734580226/chinh-300x300_yfjqj7.png"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            Description = "Bánh truyền thống",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579954/Artboard-361-300x300_ie5h9h.png"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            Description = "Bánh hiện đại",
+                            Url = "https://res.cloudinary.com/dlo5qxnxw/image/upload/v1734579544/4-300x300_kkdq5f.jpg"
+                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Order", b =>
@@ -202,13 +377,15 @@ namespace DP_Shop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
@@ -284,6 +461,11 @@ namespace DP_Shop.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
@@ -292,6 +474,104 @@ namespace DP_Shop.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7185),
+                            Description = "banh-ep-hue-vi-thi-nuong-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7187),
+                            Name = "Bánh Ép Huế Vị Thịt Nướng 40g",
+                            Price = 30000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-vi-thi-nuong-40g"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7198),
+                            Description = "banh-ep-hue-goi-snack-vi-tep-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7199),
+                            Name = "Bánh Ép Huế Gói Snack Vị Tép 40g",
+                            Price = 35000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-goi-snack-vi-tep-40g"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
+                            Description = "banh-ep-hue-goi-snack-bbq-vi-thit-nuong-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
+                            Name = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
+                            Price = 35000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-goi-snack-bbq-vi-thit-nuong-40g"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
+                            Description = "banh-ep-hue-hai-san-vi-tom-thit-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
+                            Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
+                            Price = 50000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-hai-san-vi-tom-thit-65g"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7207),
+                            Description = "banh-ep-hue-hai-san-vi-tom-thit-40g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7208),
+                            Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
+                            Price = 30000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-hai-san-vi-tom-thit-40g"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
+                            Description = "banh-ep-hue-chay-vi-sen-hue-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
+                            Name = "Bánh ép Huế chay vị Sen Huế 65G",
+                            Price = 50000m,
+                            Quantity = 50,
+                            Slug = "banh-ep-hue-chay-vi-sen-hue-65g"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7215),
+                            Description = "banh-ep-hue-chay-vi-nam-huong-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7216),
+                            Name = "Bánh ép Huế chay vị Nấm Hương 65G",
+                            Price = 50000m,
+                            Quantity = 20,
+                            Slug = "banh-ep-hue-chay-vi-nam-huong-65g"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
+                            Description = "banh-ep-hue-bbq-vi-thit-nuong-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
+                            Name = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
+                            Price = 50000m,
+                            Quantity = 20,
+                            Slug = "banh-ep-hue-bbq-vi-thit-nuong-65g"
+                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.ProductImage", b =>
@@ -315,6 +595,116 @@ namespace DP_Shop.Migrations
                     b.HasIndex("ProductId");
 
                     b.ToTable("ProductImages");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ImageId = 1,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ImageId = 2,
+                            ProductId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ImageId = 3,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ImageId = 4,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ImageId = 5,
+                            ProductId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ImageId = 6,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ImageId = 7,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ImageId = 8,
+                            ProductId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ImageId = 9,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ImageId = 10,
+                            ProductId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ImageId = 11,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ImageId = 12,
+                            ProductId = 5
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ImageId = 13,
+                            ProductId = 6
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ImageId = 14,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ImageId = 15,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ImageId = 16,
+                            ProductId = 7
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ImageId = 17,
+                            ProductId = 8
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ImageId = 18,
+                            ProductId = 8
+                        });
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.UserAddress", b =>
@@ -494,6 +884,25 @@ namespace DP_Shop.Migrations
                     b.Navigation("Product");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("DP_Shop.Data.Entities.CategoryImage", b =>
+                {
+                    b.HasOne("DP_Shop.Data.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DP_Shop.Data.Entities.Image", "Image")
+                        .WithMany()
+                        .HasForeignKey("ImageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Order", b =>

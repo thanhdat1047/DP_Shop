@@ -1,4 +1,5 @@
 ﻿using DP_Shop.Data;
+using DP_Shop.Data.Entities;
 using DP_Shop.DTOs.Images;
 using DP_Shop.DTOs.OrderProduct;
 using DP_Shop.DTOs.Orders;
@@ -21,10 +22,13 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var orderProduct = await _context.OrderProducts
-                    .Include(o =>o.Product)
+                var orderProduct = _context.OrderProducts
+                    .Include(op => op.Product)
                     .ThenInclude(p => p.ProductImages)
-                    .FirstOrDefaultAsync(o => o.Id == id);
+                    .ThenInclude(pi => pi.Image)
+                    .FirstOrDefault(op => op.Id == id);
+
+
                 if (orderProduct == null)
                 {
                     return new Result<OrderProductResponse>("Order Product not found");
@@ -45,7 +49,6 @@ namespace DP_Shop.Respository
                             Url = pi.Image.Url
                         }).ToList()
                     : new List<ImageDto>()
-
                 };
 
                 return new Result<OrderProductResponse>(orderResponse);

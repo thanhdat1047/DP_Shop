@@ -174,14 +174,14 @@ namespace DP_Shop.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8031),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6865),
                             Description = "Sản phẩm truyền thống",
                             Name = "Sản phẩm truyền thống"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8034),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6867),
                             Description = "Sản phẩm hiện đại",
                             Name = "Sản phẩm hiện đại"
                         });
@@ -381,9 +381,8 @@ namespace DP_Shop.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Status")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
@@ -478,9 +477,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8318),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8319),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7185),
+                            Description = "banh-ep-hue-vi-thi-nuong-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7187),
                             Name = "Bánh Ép Huế Vị Thịt Nướng 40g",
                             Price = 30000m,
                             Quantity = 50,
@@ -490,9 +489,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8332),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8333),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7198),
+                            Description = "banh-ep-hue-goi-snack-vi-tep-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7199),
                             Name = "Bánh Ép Huế Gói Snack Vị Tép 40g",
                             Price = 35000m,
                             Quantity = 50,
@@ -502,9 +501,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8336),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8337),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
+                            Description = "banh-ep-hue-goi-snack-bbq-vi-thit-nuong-40g.txt",
+                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
                             Name = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
                             Price = 35000m,
                             Quantity = 50,
@@ -514,9 +513,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8340),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8340),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
+                            Description = "banh-ep-hue-hai-san-vi-tom-thit-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
                             Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
                             Price = 50000m,
                             Quantity = 50,
@@ -526,9 +525,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8343),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8344),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7207),
+                            Description = "banh-ep-hue-hai-san-vi-tom-thit-40g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7208),
                             Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
                             Price = 30000m,
                             Quantity = 50,
@@ -538,9 +537,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8347),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8348),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
+                            Description = "banh-ep-hue-chay-vi-sen-hue-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
                             Name = "Bánh ép Huế chay vị Sen Huế 65G",
                             Price = 50000m,
                             Quantity = 50,
@@ -550,9 +549,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8350),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8351),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7215),
+                            Description = "banh-ep-hue-chay-vi-nam-huong-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7216),
                             Name = "Bánh ép Huế chay vị Nấm Hương 65G",
                             Price = 50000m,
                             Quantity = 20,
@@ -562,9 +561,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 8,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2024, 12, 30, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8354),
-                            Description = "Bánh ép Huế là một đặc sản khởi nguồn từ biển Thuận An, Huế. Bánh ép Huế là sản phẩm được chế biến theo công thức đặc biệt riêng, nhất là khi kết hợp hài hòa giữa thịt mỡ cùng với hương thơm của sả, hành, ớt, tạo nên vị ngon khó cưỡng, không thể tách rời. Bên cạnh đó, bánh có thể ăn kèm với tương ớt cay cay thì quá là ngon miệng. Bánh không chất bảo quản, không màu thực phẩm và được đóng gói trong hộp giấy đảm bảo chất lượng sản phẩm an toàn, khi được chứng nhận và cung cấp chứng chỉ an toàn vệ sinh thực phẩm HACCP.",
-                            ExpiryDate = new DateTime(2025, 1, 29, 17, 40, 23, 163, DateTimeKind.Local).AddTicks(8355),
+                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
+                            Description = "banh-ep-hue-bbq-vi-thit-nuong-65g.txt",
+                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
                             Name = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
                             Price = 50000m,
                             Quantity = 20,
