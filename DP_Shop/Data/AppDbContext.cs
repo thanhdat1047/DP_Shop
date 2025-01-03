@@ -1,4 +1,5 @@
-﻿using DP_Shop.Data.Entities;
+﻿using DP_Shop.Data.DP_Shop.Data;
+using DP_Shop.Data.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -50,7 +51,7 @@ namespace DP_Shop.Data
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserId);
 
-            SeedData.ProductImageCategorySeed(builder);
+            Seed.ProductImageCategorySeed(builder);
         }
     }
 }

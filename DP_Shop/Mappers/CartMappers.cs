@@ -35,7 +35,23 @@ namespace DP_Shop.Mappers
                 ProductId = cart.ProductId,
                 UserId = cart.UserId,
                 Total = cart.TotalPrice,
-                Product = cart.Product
+                Product = new Product
+                {
+                    Id = cart.Product!.Id,
+                    Name = cart.Product.Name,
+                    Description = cart.Product.GetDescriptionFromFile(),
+                    CategoryId = cart.Product.CategoryId,
+                    ExpiryDate = cart.Product.ExpiryDate,   
+                    Price = cart.Product.Price, 
+                    ProductImages = cart.Product.ProductImages,
+                    Category = cart.Product.Category,
+                    Quantity  = cart.Product.Quantity,
+                    Slug = cart.Product.Slug,
+
+                    CreatedAt = cart.Product.CreatedAt,
+                    DeletedAt = cart.Product.DeletedAt,
+                    UpdatedAt = cart.Product.UpdatedAt,
+                }
             };
         }
 

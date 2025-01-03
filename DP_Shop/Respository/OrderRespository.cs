@@ -1,8 +1,9 @@
 ﻿using DP_Shop.Data;
 using DP_Shop.Data.Entities;
-using DP_Shop.DTOs;
 using DP_Shop.DTOs.Categories;
 using DP_Shop.DTOs.Enum;
+using DP_Shop.DTOs.Images;
+using DP_Shop.DTOs.OrderProduct;
 using DP_Shop.DTOs.Orders;
 using DP_Shop.DTOs.Products;
 using DP_Shop.Helpers.Query;
@@ -122,7 +123,9 @@ namespace DP_Shop.Respository
                 var order = await _context.Orders
                     .Where(o => o.Id == orderId && o.UserId == userId)
                     .Include(o => o.OrderProducts!)
-                    .ThenInclude(op => op.Product)
+                        .ThenInclude(op => op.Product)
+                        .ThenInclude(p => p.ProductImages)
+                        .ThenInclude(pi => pi.Image)
                     .FirstOrDefaultAsync();
 
                 if (order == null) 
@@ -155,7 +158,16 @@ namespace DP_Shop.Respository
                                 Price = op.Product.Price,
                                 Slug = op.Product.Slug,
                                 ExpiryDate = op.Product.ExpiryDate
-                            } : null
+                            } : null,
+                            Images = op.Product != null && op.Product.ProductImages != null
+                            ? op.Product.ProductImages
+                                .Where(pi => pi.Image != null)
+                                .Select(pi => new ImageDto
+                                {
+                                    Id = pi.Image!.Id,
+                                    Url = pi.Image.Url
+                                }).ToList()
+                            : new List<ImageDto>()
                         }).ToList()
                         : new List<OrderProductDto>()
                 };
@@ -221,6 +233,8 @@ namespace DP_Shop.Respository
                     .Take(query.PageSize)
                     .Include(o => o.OrderProducts!)
                         .ThenInclude(op => op.Product)
+                        .ThenInclude(p => p.ProductImages)
+                        .ThenInclude(pi => pi.Image)
                     .ToListAsync();
 
 
@@ -244,8 +258,18 @@ namespace DP_Shop.Respository
                             Price = op.Product.Price,
                             Slug = op.Product.Slug,
                             ExpiryDate = op.Product.ExpiryDate
-                        } : null
-                    }).ToList()
+                        } : null,
+                        Images = op.Product != null && op.Product.ProductImages != null
+                            ? op.Product.ProductImages
+                                .Where(pi => pi.Image != null)
+                                .Select(pi => new ImageDto
+                                {
+                                    Id = pi.Image!.Id,
+                                    Url = pi.Image.Url
+                                }).ToList()
+                            : new List<ImageDto>()
+                    }).ToList(),
+
                 }).ToList();
 
                 return new Result<List<OrderResponse>>(orderResponses);

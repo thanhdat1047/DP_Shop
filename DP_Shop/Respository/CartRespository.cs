@@ -99,7 +99,7 @@ namespace DP_Shop.Respository
                             Id = c.Product.Id,
                             Name = c.Product.Name,
                             Price = c.Product.Price,
-                            Description = c.Product.Description
+                            Description = c.Product.GetDescriptionFromFile()
                         } : null,
                         Total = c.TotalPrice,
                         CategoryName = c.Product != null && c.Product.Category != null

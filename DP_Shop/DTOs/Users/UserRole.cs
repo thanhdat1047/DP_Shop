@@ -1,7 +1,7 @@
 ﻿using DP_Shop.DTOs.Enum;
 using System.ComponentModel.DataAnnotations;
 
-namespace DP_Shop.Models
+namespace DP_Shop.DTOs.Users
 {
     public class UserRole
     {
