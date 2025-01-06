@@ -202,5 +202,17 @@ namespace DP_Shop.Controllers
             }
             return BadRequest(result.ErrorMessage);
         }
+
+        [Authorize]
+        [HttpGet("admin/expiring-products")]
+        public async Task<IActionResult> GetExpiringProducts([FromQuery] QueryProducts query,[FromQuery] int daysBeforeExpiry = 7)
+        {
+            var result = await _productRespository.GetExpiringProducts(query, daysBeforeExpiry);
+            if(result.Succeeded)
+            {
+                return Ok(result.Data); 
+            }
+            return BadRequest(result.ErrorMessage);
+        }
     }    
 }

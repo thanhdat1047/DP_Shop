@@ -363,7 +363,10 @@ namespace DP_Shop.Respository
                 }
                 // Phân trang
                 var skip = (query.PageNumber - 1) * query.PageSize;
-                var pageProducts = await productsQuery.Skip(skip).Take(query.PageSize).ToListAsync();
+                var pageProducts = await productsQuery
+                    .Skip(skip)
+                    .Take(query.PageSize)
+                    .ToListAsync();
 
 
                 var listProductResponse = new List<ProductResponse>();
@@ -410,6 +413,65 @@ namespace DP_Shop.Respository
             }
         }
 
+        public async Task<Result<List<ProductResponse>>> GetExpiringProducts(QueryProducts query, int daysBeforeExpiry = 7, Func<IQueryable<Product>, IQueryable<Product>>? filter = null)
+        {
+            try
+            {
+                var expirationThreshold = DateTime.Now.AddDays(daysBeforeExpiry);
+                var productsQuery = _dbContext.Products.AsQueryable()
+                    .Where(p => p.ExpiryDate != null && p.ExpiryDate <= expirationThreshold);
 
+                if (filter != null)
+                {
+                    productsQuery = filter(productsQuery);
+                }
+                if (!string.IsNullOrEmpty(query.Name))
+                {
+                    productsQuery = productsQuery.Where(p => p.Name.Contains(query.Name));
+                }
+
+                if (!string.IsNullOrEmpty(query.SortBy))
+                {
+                    productsQuery = ApplySorting(productsQuery, query);
+                }
+                else
+                {
+                    productsQuery = productsQuery.OrderBy(p => p.Name);
+                }
+                // Phân trang
+                var skip = (query.PageNumber - 1) * query.PageSize;
+                var pageProducts = await productsQuery
+                    .Skip(skip)
+                    .Take(query.PageSize)
+                    .ToListAsync();
+                var listProductResponse = new List<ProductResponse>();
+                foreach (var product in pageProducts)
+                {
+                    // Lấy thông tin hình ảnh cho từng sản phẩm
+                    var imageDtos = await _dbContext.ProductImages
+                        .Where(pi => pi.ProductId == product.Id)
+                        .Select(pi => new ImageDto
+                        {
+                            Id = pi.Image!.Id,
+                            Url = pi.Image.Url,
+                            Description = pi.Image.Description
+                        })
+                        .ToListAsync();
+
+                    listProductResponse.Add(new ProductResponse
+                    {
+                        Product = product.ToProductDtoResponse(),
+                        ImageDtos = imageDtos
+                    });
+                }
+
+                return new Result<List<ProductResponse>>(listProductResponse);
+            }
+            catch (Exception ex) 
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<List<ProductResponse>>(errorMessage);
+            }
+        }
     }
 }

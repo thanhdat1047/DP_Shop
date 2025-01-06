@@ -37,13 +37,19 @@ namespace DP_Shop.Respository
                     return new Result<CreateOrderResponse>("User not found");
                 }
 
+                if (requests.Carts == null || !requests.Carts.Any())
+                {
+                    return new Result<CreateOrderResponse>("Cart IDs are required.");
+                }
+
                 var carts = await _context.Carts
                     .Where(c => requests.Carts.Contains(c.Id) && c.UserId == userId)
                     .Include(c => c.Product)
                     .ToListAsync();
-                if (carts.IsNullOrEmpty() || !carts.Any())
+                
+                if (carts.IsNullOrEmpty() || carts.Any(c => c.Product == null))
                 {
-                    return new Result<CreateOrderResponse>("No valid carts found for the given Cart IDs.");
+                    return new Result<CreateOrderResponse>("Some carts have invalid or missing products");
                 }
 
                 var checkQuantity = carts.FirstOrDefault
@@ -124,7 +130,7 @@ namespace DP_Shop.Respository
                     .Where(o => o.Id == orderId && o.UserId == userId)
                     .Include(o => o.OrderProducts!)
                         .ThenInclude(op => op.Product)
-                        .ThenInclude(p => p.ProductImages)
+                        .ThenInclude(p => p!.ProductImages)
                         .ThenInclude(pi => pi.Image)
                     .FirstOrDefaultAsync();
 
@@ -180,7 +186,6 @@ namespace DP_Shop.Respository
                 return new Result<OrderResponse>(errorMessage);
             }
         }
-
         public async Task<Result<List<OrderResponse>>> GetOrdersByUserIdAsync(string userId, QueryOrder query)
         {
             try
@@ -233,7 +238,7 @@ namespace DP_Shop.Respository
                     .Take(query.PageSize)
                     .Include(o => o.OrderProducts!)
                         .ThenInclude(op => op.Product)
-                        .ThenInclude(p => p.ProductImages)
+                        .ThenInclude(p => p!.ProductImages)
                         .ThenInclude(pi => pi.Image)
                     .ToListAsync();
 
@@ -278,6 +283,102 @@ namespace DP_Shop.Respository
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<List<OrderResponse>>(errorMessage);
+            }
+        }
+
+        // tong so don hang
+        public async Task<Result<int>> GetTotalOrders()
+        {
+            try
+            {
+                var total = await _context.Orders.CountAsync();
+                return new Result<int>(total);
+            }
+            catch(Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<int>(errorMessage);
+            }
+        }
+
+        // tong danh thu cua cac don hang da hoan thanh
+        public async Task<Result<decimal>> GetTotalRevenue()
+        {
+            try
+            {
+                var total = await _context.Orders
+                    .Where(o => o.Status == OrderStatus.Completed)
+                    .SumAsync(o => o.Total);
+
+                return new Result<decimal>(total);
+            }
+            catch (Exception ex) 
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<decimal>(errorMessage);
+            }
+        }
+
+        // tong so san phan da ban ra
+        public async Task<Result<int>> GetProductSalesCount()
+        {
+            try
+            {
+                var total = await _context.OrderProducts.SumAsync(op => op.Quantity);
+                return new Result<int>(total);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<int>(errorMessage);
+            } 
+        }
+
+        // Danh thu chi tiet cua tung sp
+        public async Task<Result<Dictionary<string, decimal>>> GetRevenueByProduct()
+        {
+            try
+            {
+                var result = await _context.OrderProducts
+                .Include(op => op.Product)
+                .GroupBy(op => op.Product!.Name)
+                .Select(group => new
+                {
+                    ProductName = group.Key,
+                    Revenue = group.Sum(op => op.Quantity * op.Product!.Price)
+                })
+                .ToDictionaryAsync(x => x.ProductName, x => x.Revenue);
+
+                return new Result<Dictionary<string, decimal>>(result);
+            }
+            catch(Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<Dictionary<string, decimal>>(errorMessage);
+            }
+            
+        }
+
+        // So luong don hang theo khoang thoi gian
+        public async Task<Result<Dictionary<DateTime, int>>> GetOrdersCountByDate(DateTime startDate, DateTime endDate)
+        {
+            try
+            {
+                var result = await _context.Orders
+                    .Where(o => o.CreatedAt.Date >= startDate.Date && o.CreatedAt.Date <= endDate.Date)
+                    .GroupBy(o => o.CreatedAt.Date)
+                    .Select(group => new
+                    {
+                        Date = group.Key,
+                        Count = group.Count(),
+                    })
+                    .ToDictionaryAsync(x => x.Date, x => x.Count);
+                return new Result<Dictionary<DateTime, int>>(result);
+            }
+            catch (Exception ex) 
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<Dictionary<DateTime, int>>(errorMessage);
             }
         }
     }

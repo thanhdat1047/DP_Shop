@@ -2,6 +2,7 @@
 using DP_Shop.DTOs.Orders;
 using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
+using DP_Shop.Models.Result;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,6 +84,67 @@ namespace DP_Shop.Controllers
             }
 
             var result = await _orderRespository.ChangeOrderStatus(userID.Value, orderId, request.status);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/total-orders")]
+        public async Task<IActionResult> GetTotalOrders()
+        {
+            var result = await _orderRespository.GetTotalOrders();
+            if(result.Succeeded)
+            {
+                return Ok(new { TotalOrders = result.Data }); 
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/total-revenue")]
+        public async Task<IActionResult> GetTotalRevenue()
+        {
+            var result = await _orderRespository.GetTotalRevenue();
+            if (result.Succeeded)
+            {
+                return Ok(new { TotalRevenue = result.Data });
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/product-sales")]
+        public async Task<IActionResult> GetProductSalesCount()
+        {
+            var result = await _orderRespository.GetProductSalesCount();
+            if (result.Succeeded)
+            {
+                return Ok(new { ProductSales = result.Data });
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/revenue-by-product")]
+        public async Task<IActionResult> GetRevenueByProduct()
+        {
+            var result = await _orderRespository.GetRevenueByProduct();
+            if (result.Succeeded)
+            {
+                return Ok(result.Data );
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/orders-by-date")]
+        public async Task<IActionResult> GetOrdersCountByDate([FromQuery] DateTime startDate, [FromQuery] DateTime endDate)
+        {
+            var result = await _orderRespository.GetOrdersCountByDate(startDate, endDate);
             if (result.Succeeded)
             {
                 return Ok(result.Data);
