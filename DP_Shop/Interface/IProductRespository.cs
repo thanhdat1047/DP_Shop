@@ -21,9 +21,7 @@ namespace DP_Shop.Interface
         Task<Result<Boolean>> RestoreAsync(int id);
         Task<Boolean> ProductExists(int id);
         Task<Result<List<ProductResponse>>> GetProductsWithFilters(QueryProducts query, Func<IQueryable<Product>, IQueryable<Product>>? filter = null);
-
-
-
+        Task<Result<List<ProductResponse>>> GetExpiringProducts( QueryProducts query, int daysBeforeExpiry = 7, Func<IQueryable<Product>, IQueryable<Product>>? filter = null);
 
 
     }
