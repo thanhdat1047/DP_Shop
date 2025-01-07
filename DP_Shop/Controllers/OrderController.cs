@@ -70,20 +70,23 @@ namespace DP_Shop.Controllers
 
         [Authorize]
         [HttpPatch("{orderId}")]
-        public async Task<IActionResult> ChangeOrderStatus([FromRoute] int orderId,[FromBody] ChangeStateRequest request)
+        public async Task<IActionResult> ChangeOrderStatus([FromRoute] int orderId, [FromBody] ChangeStateRequest request)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            var userID = User.FindFirst("userId");
-            if (userID?.Value == null)
+            // var userID = User.FindFirst("userId");
+
+            var userID = request.UserId;
+            if (userID == null)
             {
                 return NotFound("UserId isn't valid");
             }
 
-            var result = await _orderRespository.ChangeOrderStatus(userID.Value, orderId, request.status);
+
+            var result = await _orderRespository.ChangeOrderStatus(userID, orderId, request.status);
             if (result.Succeeded)
             {
                 return Ok(result.Data);
@@ -93,12 +96,16 @@ namespace DP_Shop.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpGet("admin/total-orders")]
-        public async Task<IActionResult> GetTotalOrders()
+        public async Task<IActionResult> GetTotalOrders([FromQuery] QueryOrder query)
         {
-            var result = await _orderRespository.GetTotalOrders();
+            var result = await _orderRespository.GetTotalOrders(query);
             if(result.Succeeded)
             {
-                return Ok(new { TotalOrders = result.Data }); 
+                return Ok(new
+                {
+                    orders =  result.Data.orderAdminResponses,
+                    total = result.Data.total
+                }); 
             }
             return BadRequest(result.ErrorMessage);
         }
