@@ -71,27 +71,33 @@ namespace DP_Shop.Respository
                     Total = totalAmount,
                     Status = OrderStatus.Pending,
                     UserId = userId,
-                    CreatedAt = DateTime.Now
+                    CreatedAt = DateTime.Now,
+                    OrderProducts = carts.Select(x=> new OrderProduct
+                    {
+                        ProductId = x.ProductId,
+                        Quantity = x.Quantity
+                    }).ToList()
                 };
 
                 _context.Orders.Add(order);
+                _context.Carts.RemoveRange(carts);
+
                 await _context.SaveChangesAsync();
 
                 // Create OrderProduct
-                foreach (var cart in carts)
-                {
-                    var orderProduct = new OrderProduct
-                    {
-                        OrderId = order.Id,
-                        ProductId = cart.ProductId,
-                        Quantity = cart.Quantity,
-                    };
-                    _context.OrderProducts.Add(orderProduct);
-                }
+                //foreach (var cart in carts)
+                //{
+                //    var orderProduct = new OrderProduct
+                //    {
+                //        OrderId = order.Id,
+                //        ProductId = cart.ProductId,
+                //        Quantity = cart.Quantity,
+                //    };
+                //    _context.OrderProducts.Add(orderProduct);
+                //}
 
                 // Xóa Cart sau khi tạo Order
-                _context.Carts.RemoveRange(carts);
-                await _context.SaveChangesAsync();
+                // await _context.SaveChangesAsync();
 
                 // Commit
                 await transaction.CommitAsync();
@@ -287,9 +293,9 @@ namespace DP_Shop.Respository
         }
 
         // tong so don hang
-        public async Task<Result<int>> GetTotalOrders()
+        public async Task<Result<OrderAdminResponse>> GetTotalOrders(QueryOrder query)
         {
-            try
+            /*try
             {
                 var total = await _context.Orders.CountAsync();
                 return new Result<int>(total);
@@ -298,6 +304,99 @@ namespace DP_Shop.Respository
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<int>(errorMessage);
+            }*/
+
+            try
+            {
+                var total = await _context.Orders.CountAsync();
+
+                if (!query.IsValidDateRange(out var errorMessage))
+                {
+                    return new Result<OrderAdminResponse>(errorMessage);
+                }
+
+                var ordersQuery = _context.Orders
+                    .AsNoTracking();
+
+                if (query.Status != null)
+                {
+                    ordersQuery = ordersQuery.Where(o => o.Status == query.Status);
+                }
+
+                if (query.StartDate.HasValue)
+                {
+                    ordersQuery = ordersQuery.Where(o => o.CreatedAt >= query.StartDate.Value);
+                }
+
+                if (query.EndDate.HasValue)
+                {
+                    ordersQuery = ordersQuery.Where(o => o.CreatedAt <= query.EndDate.Value);
+                }
+
+                if (query.isPriceDecsending)
+                {
+                    ordersQuery = ordersQuery.OrderByDescending(o => o.Total);
+                }
+                else
+                {
+                    ordersQuery = ordersQuery.OrderBy(o => o.Total);
+                }
+
+                var orders = await ordersQuery
+                    .Skip((query.PageNumber - 1) * query.PageSize)
+                    .Take(query.PageSize)
+                    .Include(o => o.OrderProducts!)
+                        .ThenInclude(op => op.Product)
+                        .ThenInclude(p => p!.ProductImages)
+                        .ThenInclude(pi => pi.Image)
+                    .ToListAsync();
+
+
+                var orderResponses = orders.Select(o => new OrderResponse
+                {
+                    Id = o.Id,
+                    Name = o.Name,
+                    Total = o.Total,
+                    Status = Enum.GetName(typeof(OrderStatus), o.Status)!.ToString(),
+                    UserId = o.UserId,
+                    CreatedAt = o.CreatedAt,
+                    OrderProduct = o.OrderProducts!.Select(op => new OrderProductDto
+                    {
+                        Id = op.Id,
+                        Quantity = op.Quantity,
+                        ProductId = op.ProductId,
+                        Product = op.Product != null ? new ProductDtoResponse
+                        {
+                            Id = op.Product.Id,
+                            Name = op.Product.Name,
+                            Price = op.Product.Price,
+                            Slug = op.Product.Slug,
+                            ExpiryDate = op.Product.ExpiryDate
+                        } : null,
+                        Images = op.Product != null && op.Product.ProductImages != null
+                            ? op.Product.ProductImages
+                                .Where(pi => pi.Image != null)
+                                .Select(pi => new ImageDto
+                                {
+                                    Id = pi.Image!.Id,
+                                    Url = pi.Image.Url
+                                }).ToList()
+                            : new List<ImageDto>()
+                    }).ToList(),
+
+                }).ToList();
+
+                var orderResponse = new OrderAdminResponse()
+                {
+                    orderAdminResponses = orderResponses,
+                    total = total
+                };
+                return new Result<OrderAdminResponse>(orderResponse);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<OrderAdminResponse>(errorMessage);
             }
         }
 
@@ -339,7 +438,7 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var result = await _context.OrderProducts
+                var result = await _context.OrderProducts.AsNoTracking()
                 .Include(op => op.Product)
                 .GroupBy(op => op.Product!.Name)
                 .Select(group => new
@@ -364,7 +463,7 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var result = await _context.Orders
+                var result = await _context.Orders.AsNoTracking()
                     .Where(o => o.CreatedAt.Date >= startDate.Date && o.CreatedAt.Date <= endDate.Date)
                     .GroupBy(o => o.CreatedAt.Date)
                     .Select(group => new

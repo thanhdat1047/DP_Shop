@@ -173,13 +173,13 @@ namespace DP_Shop.Respository
                     return new Result<CartDto>("UserId does not match or is null");
                 }
 
-                var userExists = await _dbContext.Users.AnyAsync(u => u.Id == userId);
+                var userExists = await _dbContext.Users.AsNoTracking().AnyAsync(u => u.Id == userId);
                 if (!userExists)
                 {
                     return new Result<CartDto>("User not found");
                 }
 
-                var product = await _dbContext.Products.SingleOrDefaultAsync(p => p.Id == cartRequest.ProductId);
+                var product = await _dbContext.Products.AsNoTracking().SingleOrDefaultAsync(p => p.Id == cartRequest.ProductId);
                 if (product == null)
                 {
                     return new Result<CartDto>("Product not found");
