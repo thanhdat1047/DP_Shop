@@ -153,7 +153,7 @@ namespace DP_Shop.Respository
             return user;
         }*/
 
-        public async Task<Result<UserResponse>> GetUserProfile(string id)
+        public async Task<Result<UserProfile>> GetUserProfile(string id)
         {
             try
             {
@@ -163,26 +163,39 @@ namespace DP_Shop.Respository
                     .FirstOrDefaultAsync(u => u.Id == id);
                 if (user == null)
                 {
-                    return new Result<UserResponse>("User not found");
+                    return new Result<UserProfile>("User not found");
                 }
 
                 var roles = await _userManager.GetRolesAsync(user);
-                var userDto = user.ToUserResponse();
+                var userDto = user.ToUserProfile();
 
                 userDto.Roles = roles.ToList();
 
                 userDto.Addresses = user.UserAddresses?
                     .Where(ua => ua.Address != null)
-                    .Select(ua => ua.Address!.ToAddressModel())
-                    .ToList() ?? new List<AddressModel>();
+                    .Select(ua =>  ua.Address!.ToAddressDto())
+                    .ToList() ?? new List<AddressDto>();
 
-                return new Result<UserResponse>(userDto);
+                var wardCodes = userDto.Addresses.Select(a => a.WardCode).Distinct().ToList();
+                var wards = await _dbContext.Wards
+                    .AsNoTracking()
+                    .Where(w => wardCodes.Contains(w.Code))
+                    .ToDictionaryAsync(w => w.Code, w => w.Path_With_Type);
+
+                foreach (var address in userDto.Addresses)
+                {
+                    address.Path_With_Type = wards.ContainsKey(address.WardCode)
+                        ? wards[address.WardCode]
+                        : "";
+                }
+
+                return new Result<UserProfile>(userDto);
 
             }
             catch (Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<UserResponse>(errorMessage);
+                return new Result<UserProfile>(errorMessage);
             }
         }
 
@@ -279,5 +292,7 @@ namespace DP_Shop.Respository
         {
             return await _userManager.Users.AnyAsync(u => u.Id == id);
         }
+
+
     }
 }

@@ -3,8 +3,9 @@
     public class UserAddressResponse
     {
         public int Id { get; set; }
-        public string City { get; set; } = string.Empty;
-        public string Code { get; set; } = string.Empty;
+        public string Detail { get; set; } = string.Empty;
+        public string WardCode { get; set; } = string.Empty;
         public bool isDefault { get; set; } = false;
+        public string Path_With_Type { get; set; } = string.Empty;
     }
 }

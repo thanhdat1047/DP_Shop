@@ -21,12 +21,14 @@ namespace DP_Shop.Data
         public DbSet<Category> Categories { get; set; }
         public DbSet<Cart> Carts { get; set; }
         public DbSet<OrderProduct> OrderProducts { get; set; }
+        public DbSet<Provinces> Provinces { get; set; }
+        public DbSet<District> Districts { get; set; }
+        public DbSet<Ward> Wards { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            
-            
 
             builder.Entity<Address>(entity =>
             {
@@ -41,15 +43,22 @@ namespace DP_Shop.Data
                 .WithMany(u => u.UserAddresses)
                 .HasForeignKey(ua => ua.UserId);
 
-            /*builder.Entity<Order>(e => {
-                e.Property(o => o.Status)
-                .HasConversion<string>()
-                .IsRequired();
-            });*/
             builder.Entity<Order>()
                 .HasOne(o => o.User)
                 .WithMany(u => u.Orders)
                 .HasForeignKey(o => o.UserId);
+
+            builder.Entity<Provinces>()
+                .HasMany(p => p.Districts)
+                .WithOne(u => u.Provinces) 
+                .HasForeignKey(d => d.ParentCode)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<District>()
+                .HasMany(d => d.Wards)
+                .WithOne(w => w.District)
+                .HasForeignKey(w => w.ParentCode)
+                .OnDelete(DeleteBehavior.Cascade);
 
             Seed.ProductImageCategorySeed(builder);
         }

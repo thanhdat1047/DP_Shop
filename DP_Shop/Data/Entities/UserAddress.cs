@@ -10,7 +10,6 @@ namespace DP_Shop.Data.Entities
         public bool IsDefault { get; set; } = false;
         public int AddressId { get; set; }
         public string UserId { get; set; } = string.Empty;
-
         public Address? Address { get; set; }
         public ApplicationUser? User { get; set; }
     }

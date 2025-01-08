@@ -26,7 +26,7 @@ namespace DP_Shop.Controllers
             {
                 return BadRequest(ModelState);
             }
-            if (request.Carts == null || !request.Carts.Any())
+            if (request.Carts == null || request.Carts.Count() == 0)
             {
                 return BadRequest("CartIds cannot be empty.");
             }

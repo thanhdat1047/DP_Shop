@@ -10,7 +10,7 @@ namespace DP_Shop.Interface
         Task<Result<UserResponse>> GetUserbyUsername(string username);
         Task<Result<List<UserResponse>>> GetUsers(QueryUser query);
         Task<Result<UserResponse>> GetUserById(string id);
-        Task<Result<UserResponse>> GetUserProfile(string id);
+        Task<Result<UserProfile>> GetUserProfile(string id);
         Task<Result<ApplicationUser>> UpdateAsync(string id, UpdateUserRequestDto userDto);
         Task<Result<ApplicationUser>> DeleteAsync(string id);
         Task<Result<Boolean>> ChangePassword(string userId, string currentPassword, string newPassword);

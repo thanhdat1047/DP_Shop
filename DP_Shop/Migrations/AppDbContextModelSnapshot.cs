@@ -30,11 +30,11 @@ namespace DP_Shop.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("City")
+                    b.Property<string>("Detail")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Code")
+                    b.Property<string>("WardCode")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -174,14 +174,14 @@ namespace DP_Shop.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6865),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(777),
                             Description = "Sản phẩm truyền thống",
                             Name = "Sản phẩm truyền thống"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(6867),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(780),
                             Description = "Sản phẩm hiện đại",
                             Name = "Sản phẩm hiện đại"
                         });
@@ -222,6 +222,62 @@ namespace DP_Shop.Migrations
                             CategoryId = 2,
                             ImageId = 20
                         });
+                });
+
+            modelBuilder.Entity("DP_Shop.Data.Entities.District", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasAnnotation("Relational:JsonPropertyName", "code");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
+
+                    b.Property<string>("Name_With_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name_with_type");
+
+                    b.Property<string>("ParentCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasAnnotation("Relational:JsonPropertyName", "parent_code");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "path");
+
+                    b.Property<string>("Path_With_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "path_with_type");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "slug");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasAnnotation("Relational:JsonPropertyName", "type");
+
+                    b.HasKey("Code");
+
+                    b.HasIndex("ParentCode");
+
+                    b.ToTable("Districts");
                 });
 
             modelBuilder.Entity("DP_Shop.Data.Entities.Image", b =>
@@ -477,9 +533,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 1,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7185),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1234),
                             Description = "banh-ep-hue-vi-thi-nuong-40g.txt",
-                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7187),
+                            ExpiryDate = new DateTime(2025, 1, 28, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1235),
                             Name = "Bánh Ép Huế Vị Thịt Nướng 40g",
                             Price = 30000m,
                             Quantity = 50,
@@ -489,9 +545,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 2,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7198),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1259),
                             Description = "banh-ep-hue-goi-snack-vi-tep-40g.txt",
-                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7199),
+                            ExpiryDate = new DateTime(2025, 1, 28, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1260),
                             Name = "Bánh Ép Huế Gói Snack Vị Tép 40g",
                             Price = 35000m,
                             Quantity = 50,
@@ -501,9 +557,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 3,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1263),
                             Description = "banh-ep-hue-goi-snack-bbq-vi-thit-nuong-40g.txt",
-                            ExpiryDate = new DateTime(2025, 1, 23, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7202),
+                            ExpiryDate = new DateTime(2025, 1, 28, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1263),
                             Name = "Bánh Ép Huế Gói Snack BBQ Vị Thịt Nướng 40g",
                             Price = 35000m,
                             Quantity = 50,
@@ -513,9 +569,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 4,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1267),
                             Description = "banh-ep-hue-hai-san-vi-tom-thit-65g.txt",
-                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7205),
+                            ExpiryDate = new DateTime(2025, 2, 7, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1268),
                             Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 65G",
                             Price = 50000m,
                             Quantity = 50,
@@ -525,9 +581,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 5,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7207),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1271),
                             Description = "banh-ep-hue-hai-san-vi-tom-thit-40g.txt",
-                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7208),
+                            ExpiryDate = new DateTime(2025, 2, 7, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1271),
                             Name = "Bánh Ép Huế Hải Sản Vị Tôm Thịt 40G",
                             Price = 30000m,
                             Quantity = 50,
@@ -537,9 +593,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 6,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1274),
                             Description = "banh-ep-hue-chay-vi-sen-hue-65g.txt",
-                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7213),
+                            ExpiryDate = new DateTime(2025, 2, 7, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1275),
                             Name = "Bánh ép Huế chay vị Sen Huế 65G",
                             Price = 50000m,
                             Quantity = 50,
@@ -549,9 +605,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 7,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7215),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1277),
                             Description = "banh-ep-hue-chay-vi-nam-huong-65g.txt",
-                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7216),
+                            ExpiryDate = new DateTime(2025, 2, 7, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1278),
                             Name = "Bánh ép Huế chay vị Nấm Hương 65G",
                             Price = 50000m,
                             Quantity = 20,
@@ -561,9 +617,9 @@ namespace DP_Shop.Migrations
                         {
                             Id = 8,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2025, 1, 3, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
+                            CreatedAt = new DateTime(2025, 1, 8, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1281),
                             Description = "banh-ep-hue-bbq-vi-thit-nuong-65g.txt",
-                            ExpiryDate = new DateTime(2025, 2, 2, 10, 39, 1, 952, DateTimeKind.Local).AddTicks(7218),
+                            ExpiryDate = new DateTime(2025, 2, 7, 14, 10, 55, 660, DateTimeKind.Local).AddTicks(1281),
                             Name = "Bánh Ép Huế BBQ Vị Thịt Nướng 65G",
                             Price = 50000m,
                             Quantity = 20,
@@ -704,6 +760,42 @@ namespace DP_Shop.Migrations
                         });
                 });
 
+            modelBuilder.Entity("DP_Shop.Data.Entities.Provinces", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasAnnotation("Relational:JsonPropertyName", "code");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
+
+                    b.Property<string>("Name_With_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name_with_type");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "slug");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasAnnotation("Relational:JsonPropertyName", "type");
+
+                    b.HasKey("Code");
+
+                    b.ToTable("Provinces");
+                });
+
             modelBuilder.Entity("DP_Shop.Data.Entities.UserAddress", b =>
                 {
                     b.Property<int>("Id")
@@ -729,6 +821,62 @@ namespace DP_Shop.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserAddresses");
+                });
+
+            modelBuilder.Entity("DP_Shop.Data.Entities.Ward", b =>
+                {
+                    b.Property<string>("Code")
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasAnnotation("Relational:JsonPropertyName", "code");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name");
+
+                    b.Property<string>("Name_With_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "name_with_type");
+
+                    b.Property<string>("ParentCode")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)")
+                        .HasAnnotation("Relational:JsonPropertyName", "parent_code");
+
+                    b.Property<string>("Path")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasAnnotation("Relational:JsonPropertyName", "path");
+
+                    b.Property<string>("Path_With_Type")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "path_with_type");
+
+                    b.Property<string>("Slug")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)")
+                        .HasAnnotation("Relational:JsonPropertyName", "slug");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasAnnotation("Relational:JsonPropertyName", "type");
+
+                    b.HasKey("Code");
+
+                    b.HasIndex("ParentCode");
+
+                    b.ToTable("Wards");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -902,6 +1050,17 @@ namespace DP_Shop.Migrations
                     b.Navigation("Image");
                 });
 
+            modelBuilder.Entity("DP_Shop.Data.Entities.District", b =>
+                {
+                    b.HasOne("DP_Shop.Data.Entities.Provinces", "Provinces")
+                        .WithMany("Districts")
+                        .HasForeignKey("ParentCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Provinces");
+                });
+
             modelBuilder.Entity("DP_Shop.Data.Entities.Order", b =>
                 {
                     b.HasOne("DP_Shop.Data.Entities.ApplicationUser", "User")
@@ -981,6 +1140,17 @@ namespace DP_Shop.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("DP_Shop.Data.Entities.Ward", b =>
+                {
+                    b.HasOne("DP_Shop.Data.Entities.District", "District")
+                        .WithMany("Wards")
+                        .HasForeignKey("ParentCode")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("District");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -1051,6 +1221,11 @@ namespace DP_Shop.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("DP_Shop.Data.Entities.District", b =>
+                {
+                    b.Navigation("Wards");
+                });
+
             modelBuilder.Entity("DP_Shop.Data.Entities.Order", b =>
                 {
                     b.Navigation("OrderProducts");
@@ -1059,6 +1234,11 @@ namespace DP_Shop.Migrations
             modelBuilder.Entity("DP_Shop.Data.Entities.Product", b =>
                 {
                     b.Navigation("ProductImages");
+                });
+
+            modelBuilder.Entity("DP_Shop.Data.Entities.Provinces", b =>
+                {
+                    b.Navigation("Districts");
                 });
 #pragma warning restore 612, 618
         }

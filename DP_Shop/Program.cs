@@ -1,4 +1,5 @@
 using DP_Shop.Data;
+using DP_Shop.Data.DP_Shop.Data;
 using DP_Shop.Data.Entities;
 using DP_Shop.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -19,6 +20,7 @@ builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddIdentityService(builder.Configuration);
 
+
 builder.Services.AddAuthorization(options =>
 {
     options.AddPolicy("AdminPolicy", policy => policy.RequireRole("Admin"));
@@ -34,6 +36,8 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader();
     });
 });
+
+builder.Services.AddTransient<AddressDataSeeder>();
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -69,13 +73,21 @@ builder.Services.AddSwaggerGen(c =>
 });
 var app = builder.Build();
 
+
 // Migration and seek
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     var userManager = services.GetRequiredService<UserManager<ApplicationUser>>();
     var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
-    await SeedData.Initialize(services, userManager, roleManager);
+    await Seed.Initialize(services, userManager, roleManager);
+
+    var seeder = services.GetRequiredService<AddressDataSeeder>();
+
+    seeder.SeedProvinces("Files/thanh-pho");
+    seeder.SeedDistricts("Files/quan-huyen");
+    seeder.SeedWards("Files/xa-phuong");
+
 }
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
