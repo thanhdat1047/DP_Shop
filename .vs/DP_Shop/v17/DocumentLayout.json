@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\userrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\userrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -46,11 +50,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 180,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "IAddressRepository.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IAddressRepository.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Interface\\IAddressRepository.cs",
@@ -64,13 +68,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UserRespository.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\UserRespository.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Respository\\UserRespository.cs",
               "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\UserRespository.cs",
               "RelativeToolTip": "DP_Shop\\Respository\\UserRespository.cs",
-              "ViewState": "AQIAAKEAAAAAAAAAAAAAwLoAAABKAAAA",
+              "ViewState": "AQIAAKEAAAAAAAAAAAAAwLEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-08T08:38:38.115Z",
               "IsPinned": true,
@@ -78,7 +82,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "AddressRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAYwJMAAAA9AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-08T09:14:21.551Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "UserResponse.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserResponse.cs",
               "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Users\\UserResponse.cs",
@@ -91,7 +108,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "UserProfile.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Users\\UserProfile.cs",
               "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Users\\UserProfile.cs",
@@ -104,7 +121,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "UserMappers.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\UserMappers.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Mappers\\UserMappers.cs",
@@ -117,7 +134,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "UserController.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\UserController.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Controllers\\UserController.cs",
@@ -130,7 +147,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "AddressMappers.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Mappers\\AddressMappers.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Mappers\\AddressMappers.cs",
@@ -143,7 +160,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AddressModel.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Address\\AddressModel.cs",
               "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Address\\AddressModel.cs",
@@ -162,7 +179,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "IUserRespository.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IUserRespository.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Interface\\IUserRespository.cs",

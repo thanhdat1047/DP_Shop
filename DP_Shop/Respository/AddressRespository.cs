@@ -138,14 +138,16 @@ namespace DP_Shop.Respository
                     return new Result<bool>("Address is default");
                 }
 
-                /*var address = await _dbContext.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+                var address = await _dbContext.Addresses.FirstOrDefaultAsync(a => a.Id == id);
 
                 if (address == null)
                 {
                     return new Result<bool>("Address not found");
-                }*/
+                }
 
                 _dbContext.UserAddresses.Remove(addressUser);
+                _dbContext.Addresses.Remove(address);   
+
                 await _dbContext.SaveChangesAsync();
 
                 return new Result<bool>(true);
