@@ -11,8 +11,26 @@ namespace DP_Shop.Mappers
         {
             return new AddressModel
             {
-                City = address.City,
-                Code = address.Code,
+                WardCode = address.WardCode,
+                Detail = address.Detail,
+            };
+        }
+        public static AddressDto ToAddressDto(this Address address)
+        {
+            return new AddressDto
+            {
+                Id = address.Id,    
+                WardCode = address.WardCode,
+                Detail = address.Detail,
+            };
+        }
+        public static AddressModel ToAddressModel(this Address address, string path)
+        {
+            return new AddressModel
+            {
+                WardCode = address.WardCode,
+                Detail = address.Detail,
+                Path_With_Type = path   
             };
         }
 
@@ -21,8 +39,18 @@ namespace DP_Shop.Mappers
             return new AddressModelResponse
             {
                 Id = address.Id,    
-                City = address.City,
-                Code = address.Code,
+                Detail = address.Detail,
+                WardCode = address.WardCode,
+            };
+        }
+        public static AddressModelResponse ToResponseAddressModel(this Address address, string path)
+        {
+            return new AddressModelResponse
+            {
+                Id = address.Id,
+                Detail = address.Detail,
+                WardCode = address.WardCode,
+                Path_With_Type = path
             };
         }
         public static UserAddressResponse ToUserAddressResponse(this Address addressModel, bool isDefault)
@@ -30,8 +58,8 @@ namespace DP_Shop.Mappers
             return new UserAddressResponse
             {
                 Id = addressModel.Id,
-                City = addressModel.City,
-                Code = addressModel.Code,
+                WardCode = addressModel.WardCode,
+                Detail = addressModel.Detail,
                 isDefault = isDefault  ,
             };
         }
@@ -39,8 +67,8 @@ namespace DP_Shop.Mappers
         {
             return new Address
             {
-                City = addressModel.City,
-                Code = addressModel.Code,
+                WardCode = addressModel.WardCode,
+                Detail = addressModel.Detail,
             };
         }
 

@@ -6,10 +6,12 @@ namespace DP_Shop.Data.Entities
     {
         [Key]
         public int Id { get; set; }
+
         [Required]
-        public string City { get; set; } = string.Empty;
+        public string Detail { get; set; } = string.Empty;
+
         [Required]
-        public string Code { get; set; } = string.Empty;
+        public required string WardCode { get; set; } = string.Empty;
 
         public ICollection<UserAddress>? UserAddresses { get; set; }
         

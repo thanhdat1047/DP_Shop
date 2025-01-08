@@ -42,9 +42,8 @@ namespace DP_Shop.Controllers
 
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpDelete("admin/{id}")]
-        public async Task<IActionResult> DeleteAddesss([FromRoute] int id)
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAddesss([FromRoute] int id, [FromBody] DeleteAddressRequest request)
         {
             if (!ModelState.IsValid)
             {
@@ -56,7 +55,7 @@ namespace DP_Shop.Controllers
                 return NotFound("Address not found");
             }
 
-            var result = await _addressRepository.DeleteAsync(id);
+            var result = await _addressRepository.DeleteAsync(id, request.UserId);
             if (result.Succeeded)
             {
                 return Ok(result.Data);
@@ -64,7 +63,7 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
-        [Authorize]
+        /*[Authorize]
         [HttpDelete("unlink/{id}")]
         public async Task<IActionResult> UnlinkToAddress([FromRoute] int id)
         {
@@ -92,8 +91,25 @@ namespace DP_Shop.Controllers
             }
             return BadRequest(result.ErrorMessage);
 
-        }
+        }*/
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/")]
+        public async Task<IActionResult> GetAllAddress([FromQuery] QueryAddress query)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var result = await _addressRepository.GetAllAddress(query);
+
+            if (result == null)
+            {
+                return BadRequest(new { message = "List addresses is null" });
+            }
+            return Ok(result);
+        }
 
         [Authorize]
         [HttpGet("{id}")]
@@ -118,23 +134,7 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
-        [Authorize(Roles = "Admin")]
-        [HttpGet("admin/")]
-        public async Task<IActionResult> GetAllAddress([FromQuery] QueryAddress query)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            var result = await _addressRepository.GetAllAddress(query);
-
-            if (result == null)
-            {
-                return BadRequest(new { message = "List addresses is null" });
-            }
-            return Ok(result);
-        }
+      
 
         [Authorize]
         [HttpGet]
@@ -174,9 +174,9 @@ namespace DP_Shop.Controllers
                 return BadRequest("User id is null");
             }
 
-            if (! await _addressRepository.AddressExists(id))
+            if (!await _addressRepository.AddressExists(id))
             {
-                return NotFound("Address not found");  
+                return NotFound("Address not found");
             }
 
             var result = await _addressRepository.UpdateAsync(id, updateAddressRequest, userID.Value);
@@ -187,5 +187,64 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
+        //[Authorize]
+        [HttpGet("/provinces")]
+        public async Task<IActionResult> GetProvinces()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _addressRepository.GetProvinces();
+            if (result.Succeeded) 
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [HttpGet("/province/{code}")]
+        public async Task<IActionResult> GetProvinceByCode([FromRoute] string code)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _addressRepository.GetProvinceByCode(code);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
+        [HttpGet("/district/{parentCode}")]
+        public async Task<IActionResult> GetDicstrictByCode([FromRoute] string parentCode)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _addressRepository.GetDistricstByParentCode(parentCode);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+        [HttpGet("/ward/{parentCode}")]
+        public async Task<IActionResult> GetWardByCode([FromRoute] string parentCode)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result = await _addressRepository.GetWardsByParentCode(parentCode);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
     }
 }

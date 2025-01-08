@@ -5,11 +5,13 @@ using DP_Shop.Helpers.Query;
 using DP_Shop.Interface;
 using DP_Shop.Mappers;
 using DP_Shop.Models.Result;
+using Humanizer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Server.IISIntegration;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
+using System.Net;
 using System.Transactions;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
@@ -27,39 +29,35 @@ namespace DP_Shop.Respository
 
         }
 
-
-        public async Task<Result<AddressModel>> CreateAsync(AddressModel address, string userId, bool isDefault)
+        public async Task<Result<AddressModel>> CreateAsync(AddressRequest address, string userId, bool isDefault)
         {
             IDbContextTransaction? transaction = null;
             try
             {
                 transaction = await _dbContext.Database.BeginTransactionAsync();
-                
-                var newAddress = address.ToAddress();
 
-                await _dbContext.Addresses.AddAsync(newAddress);
-                await _dbContext.SaveChangesAsync();
-
-                // var newAddressId = newAddress.Id;
-
-                /* if (newAddressId <= 0)
-                 {
-                     await transaction.RollbackAsync();
-                     return new Result<AddressModel>("Address creation failed. Invalid address ID.");
-                 }*/
-                var existingAddress = await _dbContext.Addresses.FindAsync(newAddress.Id);
-                if (existingAddress == null)
+                if(userId == null)
                 {
-                    await transaction.RollbackAsync();
-                    return new Result<AddressModel>("Address creation failed.");
+                    return new Result<AddressModel>("UserId is invalid.");
                 }
 
-                var userExists = await _dbContext.Users.AnyAsync(u => u.Id == userId);
-                if (!userExists)
+                var userExists = await _dbContext.Users
+                    .AsNoTracking()
+                    .AnyAsync(u => u.Id == userId);
+                if (!userExists )
                 {
-                    await transaction.RollbackAsync();
                     return new Result<AddressModel>("User not found.");
                 }
+
+
+                var ward = await _dbContext.Wards
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(w => w.Code == address.WardCode);
+                if (ward == null)
+                {
+                    return new Result<AddressModel>("Ward not found.");
+                }
+
 
                 if (isDefault)
                 {
@@ -70,23 +68,37 @@ namespace DP_Shop.Respository
                     {
                         currentDefaultAddress.IsDefault = false;
                         _dbContext.UserAddresses.Update(currentDefaultAddress);
-                        await _dbContext.SaveChangesAsync();
+                        //await _dbContext.SaveChangesAsync();
                     }
                 }
 
-                var userAddress = new UserAddress
+                var newAddress = new Address
                 {
-                    AddressId = existingAddress.Id,
-                    IsDefault = isDefault,
-                    UserId = userId,
+                    Detail = address.Detail,
+                    WardCode = address.WardCode,
+                    UserAddresses = new List<UserAddress>
+                    {
+                        new UserAddress
+                        {
+                            IsDefault = isDefault,
+                            UserId = userId,
+                        }
+                    }
                 };
 
-                await _dbContext.UserAddresses.AddAsync(userAddress);
+                
+                await _dbContext.Addresses.AddAsync(newAddress);
                 await _dbContext.SaveChangesAsync();
+
+                var addressResponse = newAddress.ToAddressModel();
 
                 await transaction.CommitAsync();
 
-                return new Result<AddressModel>(address);
+                if (ward != null)
+                {
+                    addressResponse.Path_With_Type = ward.Path_With_Type;
+                }
+                return new Result<AddressModel>(addressResponse);
             }
             catch (Exception ex)
             {
@@ -107,23 +119,33 @@ namespace DP_Shop.Respository
             }
         }
 
-        public async Task<Result<bool>> DeleteAsync(int id)
+        public async Task<Result<bool>> DeleteAsync(int id, string userId)
         {
             try
             {
-                var address = await _dbContext.Addresses.FirstOrDefaultAsync(a => a.Id == id);
-                if (address == null)
+                var addressUser = await _dbContext.UserAddresses
+                    .AsNoTracking()
+                    .Where(ua => ua.AddressId == id && ua.UserId == userId)
+                    .SingleOrDefaultAsync();
+
+                if (addressUser == null)
                 {
                     return new Result<bool>("Address not found");
                 }
 
-                var isAnyAddressUser = await _dbContext.UserAddresses.AnyAsync(au => au.AddressId == id);
-                if (isAnyAddressUser) 
+                if (addressUser.IsDefault)
                 {
-                    return new Result<bool>("The address cannot be deleted because there is a user associated with this address");
+                    return new Result<bool>("Address is default");
                 }
 
-                _dbContext.Addresses.Remove(address);
+                /*var address = await _dbContext.Addresses.FirstOrDefaultAsync(a => a.Id == id);
+
+                if (address == null)
+                {
+                    return new Result<bool>("Address not found");
+                }*/
+
+                _dbContext.UserAddresses.Remove(addressUser);
                 await _dbContext.SaveChangesAsync();
 
                 return new Result<bool>(true);
@@ -137,7 +159,7 @@ namespace DP_Shop.Respository
         }
 
 
-        public async Task<Result<bool>> UnlinkToAddressAsync(int id, string userId)
+        /*public async Task<Result<bool>> UnlinkToAddressAsync(int id, string userId)
         {
             try
             {
@@ -161,7 +183,7 @@ namespace DP_Shop.Respository
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<bool>(errorMessage);
             }
-        }
+        }*/
 
         public async Task<Result<AddressModel>> GetAddressByIdAsyncNoTracking(int id)
         {
@@ -174,7 +196,17 @@ namespace DP_Shop.Respository
                 {
                     return new Result<AddressModel>("Address not found");
                 }
-                return new Result<AddressModel>(address.ToAddressModel());  
+                var addressModel = address.ToAddressModel();
+
+                var ward = await _dbContext.Wards
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(w => w.Code == address.WardCode);
+                if (ward != null)
+                {
+                    addressModel.Path_With_Type = ward.Path_With_Type;
+                }
+
+                return new Result<AddressModel>(addressModel);  
             }
             catch (Exception ex) 
             {
@@ -185,29 +217,31 @@ namespace DP_Shop.Respository
         }
         public async Task<List<AddressModelResponse>> GetAllAddress(QueryAddress query)
         {
-            var addresses = _dbContext.Addresses.AsQueryable();
-            if (!string.IsNullOrEmpty(query.City))
+            var addresses = _dbContext.Addresses
+                .AsQueryable()
+                .AsNoTracking();
+            if (!string.IsNullOrEmpty(query.Detail))
             {
-                addresses = addresses.Where(a => a.City.Contains(query.City));  
+                addresses = addresses.Where(a => a.Detail.Contains(query.Detail));  
             }
             if(!string.IsNullOrWhiteSpace(query.SortBy))
             {
                 switch(query.SortBy.ToLower())
                 {
-                    case "city":
-                        addresses = query.isDecsending ? addresses.OrderByDescending(a => a.City) : addresses.OrderBy(a => a.City);
+                    case "detail":
+                        addresses = query.isDecsending ? addresses.OrderByDescending(a => a.Detail) : addresses.OrderBy(a => a.Detail);
                         break;
-                    case "code":
-                        addresses = query.isDecsending ? addresses.OrderByDescending(a => a.Code) : addresses.OrderBy(a => a.Code);
+                    case "wardcode":
+                        addresses = query.isDecsending ? addresses.OrderByDescending(a => a.WardCode) : addresses.OrderBy(a => a.WardCode);
                         break;
                     default:
-                        addresses = addresses.OrderBy(a => a.City);
+                        addresses = addresses.OrderBy(a => a.WardCode);
                         break;
                 }
             }
             else
             {
-                addresses = addresses.OrderBy( a => a.City);
+                addresses = addresses.OrderBy( a => a.WardCode);
             }
 
             var skip = (query.PageNumber - 1) * query.PageSize;
@@ -216,7 +250,15 @@ namespace DP_Shop.Respository
             var listAddressDto = new List<AddressModelResponse>(); 
             foreach(var address in pageAddress)
             {
-                listAddressDto.Add(address.ToResponseAddressModel());   
+                var addressResponse = new AddressModelResponse();
+                var ward = await _dbContext.Wards
+                    .AsNoTracking()
+                    .SingleOrDefaultAsync(w => w.Code == address.WardCode);
+                if (ward != null)
+                {
+                    addressResponse = address.ToResponseAddressModel(ward.Path_With_Type);
+                }
+                listAddressDto.Add(addressResponse);   
             }
             return listAddressDto;  
 
@@ -227,6 +269,7 @@ namespace DP_Shop.Respository
             try
             {
                 var userAddresses = await _dbContext.UserAddresses
+                    .AsNoTracking()
                     .Where(ua => ua.UserId == userId)
                     .Include(ua => ua.Address)
                     .ToListAsync();
@@ -240,33 +283,43 @@ namespace DP_Shop.Respository
                     .Select(ua => ua.Address!.ToUserAddressResponse(ua.IsDefault))
                     .AsQueryable();
 
-                if (!string.IsNullOrEmpty(query.City))
+                if (!string.IsNullOrEmpty(query.Detail))
                 {
-                    addressModel = addressModel.Where(a => a.City.Contains(query.City));
+                    addressModel = addressModel.Where(a => a.Detail.Contains(query.Detail));
                 }
                 if (!string.IsNullOrWhiteSpace(query.SortBy))
                 {
                     switch (query.SortBy.ToLower())
                     {
                         case "city":
-                            addressModel = query.isDecsending ? addressModel.OrderByDescending(a => a.City) : addressModel.OrderBy(a => a.City);
+                            addressModel = query.isDecsending ? addressModel.OrderByDescending(a => a.Detail) : addressModel.OrderBy(a => a.Detail);
                             break;
-                        case "code":
-                            addressModel = query.isDecsending ? addressModel.OrderByDescending(a => a.Code) : addressModel.OrderBy(a => a.Code);
+                        case "wardcode":
+                            addressModel = query.isDecsending ? addressModel.OrderByDescending(a => a.WardCode) : addressModel.OrderBy(a => a.WardCode);
                             break;
                         default:
-                            addressModel = addressModel.OrderBy(a => a.City);
+                            addressModel = addressModel.OrderBy(a => a.WardCode);
                             break;
                     }
                 }
                 else
                 {
-                    addressModel = addressModel.OrderBy(a => a.City);
+                    addressModel = addressModel.OrderBy(a => a.WardCode);
                 }
 
                 var skip = (query.PageNumber - 1) * query.PageSize;
                 var pageAddress = addressModel.Skip(skip).Take(query.PageSize).ToList();
 
+                foreach (var address in pageAddress)
+                {
+                    var ward = await _dbContext.Wards
+                        .AsNoTracking()
+                        .SingleOrDefaultAsync(w => w.Code == address.WardCode);
+                    if (ward != null)
+                    {
+                        address.Path_With_Type = ward.Path_With_Type;
+                    }
+                }
                 return new Result<List<UserAddressResponse>>(pageAddress);
 
             }
@@ -312,14 +365,24 @@ namespace DP_Shop.Respository
                     return new Result<AddressModel>("Address not found");
                 }
 
-                updateAddress.City = model.Address.City;
-                updateAddress.Code = model.Address.Code;   
+                updateAddress.Detail = model.Address.Detail;
+                updateAddress.WardCode = model.Address.WardCode;
 
+               
                 await _dbContext.SaveChangesAsync();
 
                 await transaction.CommitAsync();
 
-                return new Result<AddressModel>(updateAddress.ToAddressModel());
+                var addressModel = updateAddress.ToAddressModel();
+                var ward = await _dbContext.Wards
+                .AsNoTracking()
+                        .SingleOrDefaultAsync(w => w.Code == updateAddress.WardCode);
+                if (ward != null)
+                {
+                    addressModel.Path_With_Type = ward.Path_With_Type;
+                }
+
+                return new Result<AddressModel>(addressModel);
             }
             catch (Exception ex)
             {
@@ -339,6 +402,121 @@ namespace DP_Shop.Respository
             return await _dbContext.Addresses
                 .AnyAsync(a => a.Id == id );
                 
+        }
+
+        public async Task<Result<List<Provinces>>> GetProvinces()
+        {
+            try
+            {
+                var provinces = await _dbContext.Provinces
+                    .AsNoTracking()
+                    .ToListAsync();
+                return new Result<List<Provinces>>(provinces);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<List<Provinces>>(errorMessage);
+            }
+        }
+
+        public async Task<Result<ProvinceDto>> GetProvinceByCode(string code)
+        {
+            try
+            {
+                var province = await _dbContext.Provinces
+                    .AsNoTracking()
+                    .Where(p => p.Code == code)
+                        .Include(p => p.Districts)
+                    .SingleOrDefaultAsync();
+
+                if (province == null)
+                {
+                    return new Result<ProvinceDto>("Provinces not found");
+                }
+
+                var provinceDto = new ProvinceDto()
+                {
+                    Code = province.Code,
+                    Name = province.Name,
+                    Type = province.Type,
+                    Name_With_Type = province.Name_With_Type,
+                    Slug = province.Slug,
+                    Districts = province.Districts != null ?
+                        province.Districts.Select(d => new District
+                        {
+                            Code = d.Code,
+                            Name = d.Name,
+                            Type = d.Type,
+                            Name_With_Type = d.Name_With_Type,
+                            Path = d.Path,
+                            Path_With_Type = d.Path_With_Type,
+                            Slug = d.Slug,
+                            ParentCode = d.ParentCode
+
+                        }).ToList() : new List<District>()
+                };
+                return new Result<ProvinceDto>(provinceDto);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<ProvinceDto>(errorMessage);
+            }
+        }
+
+        public async Task<Result<List<District>>> GetDistricstByParentCode(string parentCode)
+        {
+            try
+            {
+                var isExistsProvince = await _dbContext.Provinces
+                    .AsNoTracking()
+                    .AnyAsync(p => p.Code ==  parentCode);  
+
+                if(!isExistsProvince)
+                {
+                    return new Result<List<District>>("Provinces isn't exists");
+                }
+
+                var district = await _dbContext.Districts
+                    .AsNoTracking()
+                    .Where(d => d.ParentCode == parentCode)
+                    .ToListAsync();
+
+                return new Result<List<District>>(district);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<List<District>>(errorMessage);
+            }
+        }
+
+        public async Task<Result<List<Ward>>> GetWardsByParentCode(string parentCode)
+        {
+            try
+            {
+                var isExistsDistricts = await _dbContext.Districts
+                    .AsNoTracking()
+                    .AnyAsync(d => d.Code == parentCode);
+
+                if (!isExistsDistricts)
+                {
+                    return new Result<List<Ward>>("Dicstrict isn't exists");
+                }
+
+                var wards = await _dbContext.Wards
+                    .AsNoTracking()
+                    .Where(w => w.ParentCode == parentCode)
+                    .ToListAsync();
+
+                return new Result<List<Ward>>(wards);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<List<Ward>>(errorMessage);
+            }
         }
     }
 }
