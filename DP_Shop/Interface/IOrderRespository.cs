@@ -11,6 +11,7 @@ namespace DP_Shop.Interface
         Task<Result<CreateOrderResponse>> CreateOrder(string userId, CreateOrderRequest requests);
         Task<Result<List<OrderResponse>>> GetOrdersByUserIdAsync(string userId, QueryOrder query);
         Task<Result<OrderResponse>> ChangeOrderStatus(string userId, int orderId,OrderStatus status);
+        Task<Result<OrderResponse>> GetOrderById(string userId, int orderId);
         Task<Result<OrderAdminResponse>> GetTotalOrders(QueryOrder query);
         Task<Result<decimal>> GetTotalRevenue();
         Task<Result<int>> GetProductSalesCount();
