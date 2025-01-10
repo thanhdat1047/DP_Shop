@@ -46,24 +46,46 @@ namespace DP_Shop.Respository
                     .Where(c => requests.Carts.Contains(c.Id) && c.UserId == userId)
                     .Include(c => c.Product)
                     .ToListAsync();
-                
+
                 if (carts.IsNullOrEmpty() || carts.Any(c => c.Product == null))
                 {
                     return new Result<CreateOrderResponse>("Some carts have invalid or missing products");
                 }
 
-                var checkQuantity = carts.FirstOrDefault
-                    (c => c.Quantity > c.Product?.Quantity);
-                if (checkQuantity != null)
+                // Check quantity
+                var insufficientProducts = carts
+                    .Where(c => c.Quantity > c.Product?.Quantity)
+                    .Select(c => new
+                    {
+                        ProductId = c.ProductId,
+                        AvailableQuantity = c.Product?.Quantity ?? 0,
+                        RequestedQuantity = c.Quantity
+                    })
+                    .ToList();
+
+                if (insufficientProducts.Count != 0)
                 {
-                    return new Result<CreateOrderResponse>("Error quantity");
+                    var insufficientProductDetails = string.Join(", ", insufficientProducts.Select(p =>
+                    $"ProductId: {p.ProductId}, Available: {p.AvailableQuantity}, Requested: {p.RequestedQuantity}"));
+
+                    return new Result<CreateOrderResponse>($"Insufficient product quantities: {insufficientProductDetails}");
                 }
+
 
                 decimal totalAmount = carts.Sum(cart => cart.Quantity * (cart.Product?.Price ?? 0));
 
                 // Start transaction
                 transaction = await _context.Database.BeginTransactionAsync();
 
+                // Update quantity of product
+                foreach(var cart in carts)
+                {
+                    if(cart.Product != null)
+                    {
+                        cart.Product.Quantity -= cart.Quantity;
+                        _context.Products.Update(cart.Product);
+                    }
+                }
                 // CreateOrder
                 var order = new Order
                 {
@@ -84,22 +106,6 @@ namespace DP_Shop.Respository
 
                 await _context.SaveChangesAsync();
 
-                // Create OrderProduct
-                //foreach (var cart in carts)
-                //{
-                //    var orderProduct = new OrderProduct
-                //    {
-                //        OrderId = order.Id,
-                //        ProductId = cart.ProductId,
-                //        Quantity = cart.Quantity,
-                //    };
-                //    _context.OrderProducts.Add(orderProduct);
-                //}
-
-                // Xóa Cart sau khi tạo Order
-                // await _context.SaveChangesAsync();
-
-                // Commit
                 await transaction.CommitAsync();
 
                 var response = order.ToCreateOrderResponse();
@@ -115,8 +121,6 @@ namespace DP_Shop.Respository
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<CreateOrderResponse>(errorMessage);
             }
-
-
         }
         public async Task<Result<OrderResponse>> ChangeOrderStatus(string userId, int orderId, OrderStatus status)
         {
@@ -134,10 +138,6 @@ namespace DP_Shop.Respository
 
                 var order = await _context.Orders
                     .Where(o => o.Id == orderId && o.UserId == userId)
-                    .Include(o => o.OrderProducts!)
-                        .ThenInclude(op => op.Product)
-                        .ThenInclude(p => p!.ProductImages)
-                        .ThenInclude(pi => pi.Image)
                     .FirstOrDefaultAsync();
 
                 if (order == null) 
@@ -145,13 +145,74 @@ namespace DP_Shop.Respository
                     return new Result<OrderResponse>("Order not found");
                 }
 
-                order.Status = status;
+                // Change status logic
+                if (order.Status == OrderStatus.Pending && status == OrderStatus.Processing)
+                {
+                    order.Status = status;
+                }
+                else if (order.Status == OrderStatus.Processing && status == OrderStatus.Completed)
+                {
+                    order.Status = status;  
+                }
+                else if(order.Status != OrderStatus.Completed && status == OrderStatus.Cancelled)
+                {
+                    order.Status = status;
+
+                    var orderProducts = await _context.OrderProducts
+                        .Where(o => o.OrderId == orderId)
+                        .Include(o => o.Product)
+                        .ToListAsync();
+
+                    foreach (var od in orderProducts)
+                    {
+                        if (od.Product != null)
+                        {
+                            od.Product.Quantity += od.Quantity;
+                            _context.Products.Update(od.Product);
+                        }
+                    }
+                }
+                else
+                {
+                    return new Result<OrderResponse>("Invalid status transition");
+                }
                 _context.Update(order);
                 await _context.SaveChangesAsync();
 
-                var orderResponse = new OrderResponse() 
+                return await GetOrderById(userId, orderId);
+            }
+            catch (Exception ex)
+            {
+                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
+                return new Result<OrderResponse>(errorMessage);
+            }
+        }
+        public async Task<Result<OrderResponse>> GetOrderById(string userId, int orderId)
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(userId))
                 {
-                    Id = order.Id,
+                    return new Result<OrderResponse>("UserId isn't valid");
+                }
+                var existUser = await _context.Users.AnyAsync(u => u.Id == userId);
+                if (!existUser)
+                {
+                    return new Result<OrderResponse>("User not found");
+                }
+
+                var order = await _context.Orders
+                    .AsNoTracking()
+                    .Where(o => o.Id == orderId && o.UserId == userId)
+                    .Include(o => o.OrderProducts!)
+                        .ThenInclude(op => op.Product)
+                        .ThenInclude(p => p!.ProductImages)
+                        .ThenInclude(pi => pi.Image)
+                    .FirstOrDefaultAsync();
+
+                var orderResponse = new OrderResponse()
+                {
+                    Id = order!.Id,
                     Name = order.Name,
                     Total = order.Total,
                     Status = Enum.GetName(typeof(OrderStatus), order.Status)!.ToString(),
@@ -180,13 +241,13 @@ namespace DP_Shop.Respository
                                     Url = pi.Image.Url
                                 }).ToList()
                             : new List<ImageDto>()
-                        }).ToList()
-                        : new List<OrderProductDto>()
+                        }).ToList() : new List<OrderProductDto>()
                 };
 
                 return new Result<OrderResponse>(orderResponse);
+
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
                 return new Result<OrderResponse>(errorMessage);
@@ -480,5 +541,7 @@ namespace DP_Shop.Respository
                 return new Result<Dictionary<DateTime, int>>(errorMessage);
             }
         }
+
+        
     }
 }

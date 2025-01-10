@@ -37,6 +37,7 @@ namespace DP_Shop.Respository
                 }
 
                 var product = await _dbContext.Products.SingleOrDefaultAsync(p => p.Id == cartRequest.ProductId);
+                
                 if(product == null)
                 {
                     return new Result<CartDto>("Product not found");
@@ -47,14 +48,37 @@ namespace DP_Shop.Respository
                     return new Result<CartDto>("Doesn't enough product");
                 }
 
+                var existsCart = await _dbContext.Carts
+                                    .Where(c => c.ProductId == cartRequest.ProductId && c.UserId == userId)
+                                    .Include(c => c.Product)
+                                    .FirstOrDefaultAsync();
+                if(existsCart != null)
+                {
+                    var availableQuantity = existsCart.Product?.Quantity ?? 0;
+                    var requestedQuantity = existsCart.Quantity + cartRequest.Quantity;
+                    if (availableQuantity > requestedQuantity)
+                    {
+                        existsCart.Quantity += cartRequest.Quantity;
+
+                        _dbContext.Carts.Update(existsCart);
+                        await _dbContext.SaveChangesAsync();
+
+                        var existsCartDto = existsCart.ToCartDto();
+                        return new Result<CartDto>(existsCartDto);
+                    }
+                    else
+                    {
+                        return new Result<CartDto>("Doesn't enough product");
+                    }
+                   
+                }
+
                 var cartModel = cartRequest.ToCart();
                 await _dbContext.Carts.AddAsync(cartModel);
 
                 await _dbContext.SaveChangesAsync();
 
                 var cartDto = cartModel.ToCartDto();
-                //cartDto.Total = cartDto.Quantity * product.Price;
-                
                 return new Result<CartDto>(cartDto);
             }
             catch (Exception ex)
