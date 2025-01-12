@@ -520,5 +520,18 @@ namespace DP_Shop.Respository
                 return new Result<List<Ward>>(errorMessage);
             }
         }
+
+        public async Task<bool> UserAddressExists(string userId)
+        {
+            try
+            {
+                var checkUserAddresses = await _dbContext.UserAddresses
+                .AsNoTracking()
+                .AnyAsync(ua => ua.UserId == userId );
+                return checkUserAddresses;
+            }
+            catch { return false; } 
+
+        }
     }
 }

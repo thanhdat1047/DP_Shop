@@ -76,7 +76,7 @@ namespace DP_Shop.Controllers
             {
                 return BadRequest(ModelState);
             }
-            var result = await _userRespository.GetUserById(id);
+            var result = await _userRespository.GetUserProfile(id);
             if (result.Succeeded)
             {
                 return Ok(result.Data); 

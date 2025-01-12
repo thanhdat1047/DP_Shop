@@ -21,7 +21,7 @@ namespace DP_Shop.Mappers
             {
                 Id = address.Id,    
                 WardCode = address.WardCode,
-                Detail = address.Detail,
+                Detail = address.Detail
             };
         }
         public static AddressModel ToAddressModel(this Address address, string path)

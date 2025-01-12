@@ -187,6 +187,12 @@ namespace DP_Shop.Respository
                     address.Path_With_Type = wards.ContainsKey(address.WardCode)
                         ? wards[address.WardCode]
                         : "";
+
+                    var isDeault = await _dbContext.UserAddresses.AnyAsync(ua => ua.AddressId == address.Id && ua.IsDefault == true);
+                    if (isDeault)
+                    {
+                        address.isDefault = true;
+                    }
                 }
 
                 return new Result<UserProfile>(userDto);

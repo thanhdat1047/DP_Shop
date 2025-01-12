@@ -15,6 +15,7 @@ namespace DP_Shop.Interface
         //Task<Result<bool>> UnlinkToAddressAsync(int id, string userId);
         Task<Result<bool>> DeleteAsync(int id, string userId);
         Task<Boolean> AddressExists(int id);
+        Task<Boolean> UserAddressExists(string userId);
 
         Task<Result<List<Provinces>>> GetProvinces();
         Task<Result<ProvinceDto>> GetProvinceByCode(string code);

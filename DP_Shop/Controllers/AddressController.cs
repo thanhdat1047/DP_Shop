@@ -134,7 +134,17 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
-      
+        [Authorize]
+        [HttpGet("checkUserAddress")]
+        public async Task<IActionResult> CheckUserAddress([FromQuery] string userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            var result  = await _addressRepository.UserAddressExists(userId);
+            return Ok(new { result });
+        }
 
         [Authorize]
         [HttpGet]

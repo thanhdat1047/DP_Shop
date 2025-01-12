@@ -133,6 +133,17 @@ namespace DP_Shop.Controllers
             }
             return BadRequest(result.ErrorMessage);
         }
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/getorderbyid/{id}")]
+        public async Task<IActionResult> GetOrderById([FromRoute]int id, [FromQuery] string userId)
+        {
+            var result = await _orderRespository.GetOrderById( userId, id);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
 
         [Authorize(Roles = "Admin")]
         [HttpGet("admin/revenue-by-product")]

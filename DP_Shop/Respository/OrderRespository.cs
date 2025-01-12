@@ -210,6 +210,11 @@ namespace DP_Shop.Respository
                         .ThenInclude(pi => pi.Image)
                     .FirstOrDefaultAsync();
 
+                if(order == null)
+                {
+                    return new Result<OrderResponse>("Order not found");
+                }
+
                 var orderResponse = new OrderResponse()
                 {
                     Id = order!.Id,
@@ -410,6 +415,7 @@ namespace DP_Shop.Respository
                         .ThenInclude(op => op.Product)
                         .ThenInclude(p => p!.ProductImages)
                         .ThenInclude(pi => pi.Image)
+                    .Include(o => o.User)
                     .ToListAsync();
 
 

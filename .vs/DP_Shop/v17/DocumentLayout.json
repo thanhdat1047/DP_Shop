@@ -7,20 +7,28 @@
       "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\orderrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\enum\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\enum\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\addresscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\cartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\cartrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\respository\\addressrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iaddressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iaddressrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\controllers\\ordercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\data\\entities\\orderproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\data\\entities\\orderproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\interface\\iorderrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\interface\\iorderrespository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|d:\\.net\\thuc tap 2024\\dp_shop\\dp_shop\\dtos\\enum\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76AD05CB-58AF-4D47-BA24-58B88521E746}|DP_Shop\\DP_Shop.csproj|solutionrelative:dp_shop\\dtos\\enum\\orderstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,24 +38,63 @@
       "DocumentGroups": [
         {
           "DockedWidth": 180,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 6,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "CartRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CartRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Respository\\CartRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\CartRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Respository\\CartRespository.cs",
-              "ViewState": "AQIAADYAAAAAAAAAAAAnwD4AAAAYAAAA",
+              "Title": "AddressRespository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\AddressRespository.cs",
+              "RelativeToolTip": "DP_Shop\\Respository\\AddressRespository.cs",
+              "ViewState": "AQIAAI8BAAAAAAAAAAAgwA0CAAAPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T03:21:27.004Z",
+              "WhenOpened": "2025-01-12T16:47:39.461Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IAddressRepository.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IAddressRepository.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IAddressRepository.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IAddressRepository.cs",
+              "RelativeToolTip": "DP_Shop\\Interface\\IAddressRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAA3AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:46:57.519Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "AddressController.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\AddressController.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\AddressController.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\AddressController.cs",
+              "RelativeToolTip": "DP_Shop\\Controllers\\AddressController.cs",
+              "ViewState": "AQIAAGEAAAAAAAAAAAAcwIoAAABOAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T16:43:45.354Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderController.cs",
+              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\OrderController.cs",
+              "RelativeDocumentMoniker": "DP_Shop\\Controllers\\OrderController.cs",
+              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Controllers\\OrderController.cs",
+              "RelativeToolTip": "DP_Shop\\Controllers\\OrderController.cs",
+              "ViewState": "AQIAAGkAAAAAAAAAAAAowIAAAABIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-12T10:04:08.567Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
               "Title": "OrderStatus.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\DTOs\\Enum\\OrderStatus.cs",
               "RelativeDocumentMoniker": "DP_Shop\\DTOs\\Enum\\OrderStatus.cs",
@@ -55,25 +102,11 @@
               "RelativeToolTip": "DP_Shop\\DTOs\\Enum\\OrderStatus.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T03:14:00.214Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-01-10T03:14:00.214Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "IOrderRespository.cs",
-              "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IOrderRespository.cs",
-              "RelativeDocumentMoniker": "DP_Shop\\Interface\\IOrderRespository.cs",
-              "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Interface\\IOrderRespository.cs",
-              "RelativeToolTip": "DP_Shop\\Interface\\IOrderRespository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABLAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-10T03:06:35.046Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "OrderProduct.cs",
               "DocumentMoniker": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Data\\Entities\\OrderProduct.cs",
               "RelativeDocumentMoniker": "DP_Shop\\Data\\Entities\\OrderProduct.cs",
@@ -92,7 +125,7 @@
               "RelativeDocumentMoniker": "DP_Shop\\Respository\\OrderRespository.cs",
               "ToolTip": "D:\\.Net\\Thuc tap 2024\\DP_Shop\\DP_Shop\\Respository\\OrderRespository.cs",
               "RelativeToolTip": "DP_Shop\\Respository\\OrderRespository.cs",
-              "ViewState": "AQIAAKQAAAAAAAAAAAAhwK4AAAAUAAAA",
+              "ViewState": "AQIAAL8AAAAAAAAAAAAAANYAAAA7AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-10T02:39:55.239Z",
               "EditorCaption": ""
