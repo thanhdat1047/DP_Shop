@@ -20,5 +20,6 @@ namespace DP_Shop.DTOs.Address
         public required string WardCode { get; set; }
 
         public string Path_With_Type { get; set; } = string.Empty;
+        public bool isDefault { get; set; }
     }
 }
