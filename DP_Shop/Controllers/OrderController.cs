@@ -68,6 +68,28 @@ namespace DP_Shop.Controllers
             return BadRequest(result.ErrorMessage);
         }
 
+        [Authorize(Roles = "Admin")]
+        [HttpGet("admin/getbyuserid/{id}")]
+        public async Task<IActionResult> GetOrdersByUserId([FromRoute] string id,[FromQuery] QueryOrder query)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id == null)
+            {
+                return NotFound("UserId isn't valid");
+            }
+
+            var result = await _orderRespository.GetOrdersByUserIdAsync(id, query);
+            if (result.Succeeded)
+            {
+                return Ok(result.Data);
+            }
+            return BadRequest(result.ErrorMessage);
+        }
+
         [Authorize]
         [HttpPatch("{orderId}")]
         public async Task<IActionResult> ChangeOrderStatus([FromRoute] int orderId, [FromBody] ChangeStateRequest request)

@@ -12,7 +12,6 @@ namespace DP_Shop.Interface
         Task<List<AddressModelResponse>> GetAllAddress(QueryAddress query);
         Task<Result<AddressModel>> CreateAsync(AddressRequest address, string userId, bool isDefault);
         Task<Result<AddressModel>> UpdateAsync(int id, UpdateAddressRequest address, string userId); 
-        //Task<Result<bool>> UnlinkToAddressAsync(int id, string userId);
         Task<Result<bool>> DeleteAsync(int id, string userId);
         Task<Boolean> AddressExists(int id);
         Task<Boolean> UserAddressExists(string userId);
