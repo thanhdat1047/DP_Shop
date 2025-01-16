@@ -80,6 +80,7 @@ namespace DP_Shop.Respository
             try
             {
                 var user = await _dbContext.Users
+                    .AsNoTracking()
                     .Include(u => u.UserAddresses)
                     .ThenInclude(au => au.Address)
                     .FirstOrDefaultAsync(u => u.Id == id);
@@ -114,6 +115,7 @@ namespace DP_Shop.Respository
             try
             {
                 var user = await _dbContext.Users
+                    .AsNoTracking()
                     .Include(u => u.UserAddresses)
                     .ThenInclude(au => au.Address)
                     .FirstOrDefaultAsync(u => u.UserName == username );
@@ -158,6 +160,7 @@ namespace DP_Shop.Respository
             try
             {
                 var user = await _dbContext.Users
+                    .AsNoTracking()
                     .Include(u => u.UserAddresses) 
                     .ThenInclude(au => au.Address)
                     .FirstOrDefaultAsync(u => u.Id == id);
@@ -210,6 +213,7 @@ namespace DP_Shop.Respository
             try
             {
                 var users = _dbContext.Users
+                    .AsNoTracking()
                     .Include(u => u.UserAddresses)
                     .ThenInclude(ua => ua.Address)
                     .AsQueryable();

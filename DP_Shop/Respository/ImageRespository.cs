@@ -121,7 +121,9 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var image = await _dbContext.Images.FirstOrDefaultAsync(p => p.Id == id);
+                var image = await _dbContext.Images
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(p => p.Id == id);
                 if (image == null)
                 {
                     return new Result<ImageDto>("Image not found");
@@ -141,7 +143,7 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var images = _dbContext.Images.AsQueryable();
+                var images = _dbContext.Images.AsNoTracking().AsQueryable();
                 images.OrderBy(i => i.Url); 
 
                 var skip = (query.PageNumber - 1) * query.PageSize;
@@ -167,12 +169,15 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var productExists = await _dbContext.Products.AnyAsync(p => p.Id == productId);
+                var productExists = await _dbContext.Products
+                    .AsNoTracking()
+                    .AnyAsync(p => p.Id == productId);
                 if(!productExists)
                 {
                     return new Result<List< ImageDto >> ("Product not found");
                 }
                 var listImageDto = await _dbContext.ProductImages
+                    .AsNoTracking()
                     .Where(pi => pi.ProductId == productId && pi.Image != null)
                     .Select(pi => new ImageDto
                     {

@@ -49,9 +49,9 @@ namespace DP_Shop.Respository
                 }
 
                 var existsCart = await _dbContext.Carts
-                                    .Where(c => c.ProductId == cartRequest.ProductId && c.UserId == userId)
-                                    .Include(c => c.Product)
-                                    .FirstOrDefaultAsync();
+                    .Where(c => c.ProductId == cartRequest.ProductId && c.UserId == userId)
+                    .Include(c => c.Product)
+                    .FirstOrDefaultAsync();
                 if(existsCart != null)
                 {
                     var availableQuantity = existsCart.Product?.Quantity ?? 0;
@@ -104,6 +104,7 @@ namespace DP_Shop.Respository
 
 
                 var cartItems = await _dbContext.Carts
+                    .AsNoTracking()
                     .Where(c => c.UserId == userId)
                     .Include(c => c.Product)
                         .ThenInclude(p => p.ProductImages)
