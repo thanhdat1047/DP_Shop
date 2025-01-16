@@ -63,7 +63,9 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var categories = await _context.Categories.Where(c => c.DeletedAt == null).ToListAsync();
+                var categories = await _context.Categories
+                    .AsNoTracking()
+                    .Where(c => c.DeletedAt == null).ToListAsync();
                 
                 var listCategoryResponse = new List<CategoryResponse>();
                 foreach (var category in categories) {
@@ -77,7 +79,7 @@ namespace DP_Shop.Respository
                         })
                         .FirstOrDefaultAsync();
 
-                    var productCount = await _context.Products
+                    var productCount = await _context.Products.AsNoTracking()
                         .Where(p => p.CategoryId == category.Id)
                         .CountAsync();
 
@@ -236,7 +238,8 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var categories = await _context.Categories.Where(c => c.DeletedAt != null)
+                var categories = await _context.Categories
+                    .AsNoTracking().Where(c => c.DeletedAt != null)
                     .ToListAsync();
 
                 var listCategoryResponse = new List<CategoryResponse>();
@@ -252,8 +255,9 @@ namespace DP_Shop.Respository
                         })
                         .FirstOrDefaultAsync();
                     var productCount = await _context.Products
-                       .Where(p => p.CategoryId == category.Id)
-                       .CountAsync();
+                        .AsNoTracking()
+                        .Where(p => p.CategoryId == category.Id)
+                        .CountAsync();
 
                     listCategoryResponse.Add(new CategoryResponse
                     {

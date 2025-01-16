@@ -22,7 +22,7 @@ namespace DP_Shop.Respository
         {
             try
             {
-                var orderProduct = _context.OrderProducts
+                var orderProduct = _context.OrderProducts.AsNoTracking()    
                     .Include(op => op.Product)
                     .ThenInclude(p => p.ProductImages)
                     .ThenInclude(pi => pi.Image)

@@ -361,17 +361,6 @@ namespace DP_Shop.Respository
         // tong so don hang
         public async Task<Result<OrderAdminResponse>> GetTotalOrders(QueryOrder query)
         {
-            /*try
-            {
-                var total = await _context.Orders.CountAsync();
-                return new Result<int>(total);
-            }
-            catch(Exception ex)
-            {
-                var errorMessage = $"Error: {ex.Message}, StackTrace: {ex.StackTrace}";
-                return new Result<int>(errorMessage);
-            }*/
-
             try
             {
                 var total = await _context.Orders.CountAsync();
@@ -473,6 +462,7 @@ namespace DP_Shop.Respository
             try
             {
                 var total = await _context.Orders
+                    .AsNoTracking()
                     .Where(o => o.Status == OrderStatus.Completed)
                     .SumAsync(o => o.Total);
 
@@ -506,6 +496,7 @@ namespace DP_Shop.Respository
             try
             {
                 var result = await _context.OrderProducts.AsNoTracking()
+                .Where(op => op.Product!.DeletedAt == null)
                 .Include(op => op.Product)
                 .GroupBy(op => op.Product!.Name)
                 .Select(group => new
